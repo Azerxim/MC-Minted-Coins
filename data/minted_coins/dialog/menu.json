@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:multi_action",
+  "title": {
+    "text": "Minted Coins",
+    "color": "gold"
+  },
+  "body": {
+    "type": "minecraft:plain_message",
+    "contents": "Mints are merchants that strike coins from ingots. Coins can only come from a mint, so nobody can counterfeit them.",
+    "width": 260
+  },
+  "actions": [
+    {
+      "label": "New mint…",
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "minted_coins:create"
+      }
+    },
+    {
+      "label": "Mints list",
+      "action": {
+        "type": "minecraft:run_command",
+        "command": "trigger minted_coins set 2"
+      }
+    }
+  ],
+  "columns": 1,
+  "exit_action": {
+    "label": "Close"
+  },
+  "pause": false
+}

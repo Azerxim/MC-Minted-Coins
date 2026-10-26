@@ -1,0 +1,49 @@
+{
+  "type": "minecraft:confirmation",
+  "title": {
+    "text": "New mint",
+    "color": "gold"
+  },
+  "body": {
+    "type": "minecraft:plain_message",
+    "contents": "The mint appears 2 blocks in front of you, named after the renamed item in your main hand (otherwise \"Mint #N\").\n\n9 coins always melt back into 1 ingot: below 9 coins per ingot, the mint keeps the difference.",
+    "width": 260
+  },
+  "inputs": [
+    {
+      "type": "minecraft:number_range",
+      "key": "gold",
+      "label": "Gold coins per gold ingot",
+      "width": 260,
+      "start": 1,
+      "end": 9,
+      "step": 1,
+      "initial": 8
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "copper",
+      "label": "Copper coins per copper ingot",
+      "width": 260,
+      "start": 1,
+      "end": 9,
+      "step": 1,
+      "initial": 8
+    }
+  ],
+  "yes": {
+    "label": "Create the mint",
+    "action": {
+      "type": "minecraft:dynamic/run_command",
+      "template": "trigger minted_coins set 5$(gold)$(copper)"
+    }
+  },
+  "no": {
+    "label": "Back",
+    "action": {
+      "type": "minecraft:show_dialog",
+      "dialog": "minted_coins:menu"
+    }
+  },
+  "pause": false
+}

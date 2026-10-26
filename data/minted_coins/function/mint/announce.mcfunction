@@ -1,0 +1,1 @@
+$tellraw @s ["",{text:"✔ Mint created: ",color:"green"},{nbt:"mint.name",storage:"minted_coins:tmp",interpret:true,color:"gold"},{text:"\n   1 gold ingot → $(gold) gold coins, 1 copper ingot → $(copper) copper coins  ",color:"gray"},{text:"[Mints list]",color:"aqua",click_event:{action:"run_command",command:"trigger minted_coins set 2"}}]
