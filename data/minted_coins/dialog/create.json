@@ -6,7 +6,7 @@
   },
   "body": {
     "type": "minecraft:plain_message",
-    "contents": "The mint appears 2 blocks in front of you, named after the renamed item in your main hand (otherwise \"Mint #N\").\n\n9 coins always melt back into 1 ingot: below 9 coins per ingot, the mint keeps the difference.",
+    "contents": "The mint appears 2 blocks in front of you, named after the renamed item in your main hand (otherwise \"Mint #N\").\n\nCoins are named after a renamed gold, copper or iron nugget, or renamed prismarine crystals, in your inventory (otherwise \"Gold Coin\", \"Copper Coin\", \"Iron Coin\" and \"Diamond Coin\").\n\nSet a slider to 0 and the mint won't strike that coin.\n\n9 coins always melt back into 1 ingot, and the mint buys back 9 of its own diamond coins for 1 diamond: below 9 coins, the mint keeps the difference.",
     "width": 260
   },
   "inputs": [
@@ -15,7 +15,7 @@
       "key": "gold",
       "label": "Gold coins per gold ingot",
       "width": 260,
-      "start": 1,
+      "start": 0,
       "end": 9,
       "step": 1,
       "initial": 8
@@ -25,7 +25,27 @@
       "key": "copper",
       "label": "Copper coins per copper ingot",
       "width": 260,
-      "start": 1,
+      "start": 0,
+      "end": 9,
+      "step": 1,
+      "initial": 8
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "iron",
+      "label": "Iron coins per iron ingot",
+      "width": 260,
+      "start": 0,
+      "end": 9,
+      "step": 1,
+      "initial": 8
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "diamond",
+      "label": "Diamond coins per diamond",
+      "width": 260,
+      "start": 0,
       "end": 9,
       "step": 1,
       "initial": 8
@@ -35,7 +55,7 @@
     "label": "Create the mint",
     "action": {
       "type": "minecraft:dynamic/run_command",
-      "template": "trigger minted_coins set 5$(gold)$(copper)"
+      "template": "trigger minted_coins set 5$(gold)$(copper)$(iron)$(diamond)"
     }
   },
   "no": {
