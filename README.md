@@ -60,8 +60,12 @@ Without a resource pack, coins look like nuggets (or prismarine crystals) with t
 | ---------------------------- | ---------------------------- |
 | **Minecraft versions** | 26.3                         |
 | **Type**               | Data Pack (no mods required) |
-| **License**            | MIT                          |
+| **License**            | All Rights Reserved ([details](LICENSE)) |
 
 ## 📥 Installation
 
 Like any data pack: drop the downloaded folder into `.minecraft/saves/<your_world>/datapacks/`, then run `/reload` or restart the world.
+
+## 📄 License
+
+Minted Coins © 2026 Azerxim. All rights reserved: you may play with it, use it on servers, add it to modpacks that download it from its official page and show it in videos, but not re-upload it or share a modified version. See [LICENSE](LICENSE) for the details.
