@@ -1,33 +1,64 @@
 {
   "type": "minecraft:multi_action",
-  "title": {
-    "text": "Minted Coins",
-    "color": "gold"
-  },
+  "title": [
+    "",
+    {
+      "translate": "dialog.minted_coins.icon.gold",
+      "fallback": "",
+      "font": "minted_coins:dialog",
+      "color": "white",
+      "shadow_color": 0
+    },
+    {
+      "translate": "dialog.minted_coins.menu.title",
+      "fallback": "Minted Coins",
+      "color": "gold"
+    }
+  ],
   "body": {
     "type": "minecraft:plain_message",
-    "contents": "Mints are merchants that strike coins from ingots. Coins can only come from a mint, so nobody can counterfeit them.",
-    "width": 260
+    "width": 300,
+    "contents": {
+      "translate": "dialog.minted_coins.menu.body",
+      "fallback": "Mints are merchants that strike coins from ingots. Coins can only come from a mint, so nobody can counterfeit them."
+    }
   },
   "actions": [
     {
-      "label": "New mint…",
+      "label": {
+        "translate": "dialog.minted_coins.menu.new",
+        "fallback": "New mint…"
+      },
+      "tooltip": {
+        "translate": "dialog.minted_coins.menu.new.tooltip",
+        "fallback": "Place a mint 2 blocks in front of you and choose the coins it strikes."
+      },
       "action": {
         "type": "minecraft:show_dialog",
         "dialog": "minted_coins:create"
       }
     },
     {
-      "label": "Mints list",
+      "label": {
+        "translate": "dialog.minted_coins.menu.list",
+        "fallback": "Mints list"
+      },
+      "tooltip": {
+        "translate": "dialog.minted_coins.menu.list.tooltip",
+        "fallback": "Every mint with its position and rates, with Teleport and Remove buttons."
+      },
       "action": {
         "type": "minecraft:run_command",
         "command": "trigger minted_coins set 2"
       }
     }
   ],
-  "columns": 1,
+  "columns": 2,
   "exit_action": {
-    "label": "Close"
+    "label": {
+      "translate": "dialog.minted_coins.close",
+      "fallback": "Close"
+    }
   },
   "pause": false
 }

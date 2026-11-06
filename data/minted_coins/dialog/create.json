@@ -1,20 +1,48 @@
 {
-  "type": "minecraft:confirmation",
-  "title": {
-    "text": "New mint",
-    "color": "gold"
-  },
+  "type": "minecraft:multi_action",
+  "title": [
+    "",
+    {
+      "translate": "dialog.minted_coins.icon.gold",
+      "fallback": "",
+      "font": "minted_coins:dialog",
+      "color": "white",
+      "shadow_color": 0
+    },
+    {
+      "translate": "dialog.minted_coins.create.title",
+      "fallback": "New mint",
+      "color": "gold"
+    }
+  ],
   "body": {
     "type": "minecraft:plain_message",
-    "contents": "The mint appears 2 blocks in front of you, named after the renamed item in your main hand (otherwise \"Mint #N\").\n\nCoins are named after a renamed gold, copper or iron nugget, or renamed prismarine crystals, in your inventory (otherwise \"Gold Coin\", \"Copper Coin\", \"Iron Coin\" and \"Diamond Coin\").\n\nSet a slider to 0 and the mint won't strike that coin.\n\n9 coins always melt back into 1 ingot, and the mint buys back 9 of its own diamond coins for 1 diamond: below 9 coins, the mint keeps the difference.",
-    "width": 260
+    "width": 300,
+    "contents": {
+      "translate": "dialog.minted_coins.create.body",
+      "fallback": "The mint appears 2 blocks in front of you, named after the item in your main hand. Set a slider to 0 to leave a coin out.",
+      "color": "gray"
+    }
   },
   "inputs": [
     {
       "type": "minecraft:number_range",
       "key": "gold",
-      "label": "Gold coins per gold ingot",
-      "width": 260,
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.gold.icon",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "white",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.gold",
+          "fallback": "Gold coins per ingot"
+        }
+      ],
+      "width": 240,
       "start": 0,
       "end": 9,
       "step": 1,
@@ -23,8 +51,21 @@
     {
       "type": "minecraft:number_range",
       "key": "copper",
-      "label": "Copper coins per copper ingot",
-      "width": 260,
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.copper.icon",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "white",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.copper",
+          "fallback": "Copper coins per ingot"
+        }
+      ],
+      "width": 240,
       "start": 0,
       "end": 9,
       "step": 1,
@@ -33,8 +74,21 @@
     {
       "type": "minecraft:number_range",
       "key": "iron",
-      "label": "Iron coins per iron ingot",
-      "width": 260,
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.iron.icon",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "white",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.iron",
+          "fallback": "Iron coins per ingot"
+        }
+      ],
+      "width": 240,
       "start": 0,
       "end": 9,
       "step": 1,
@@ -43,23 +97,71 @@
     {
       "type": "minecraft:number_range",
       "key": "diamond",
-      "label": "Diamond coins per diamond",
-      "width": 260,
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.diamond.icon",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "white",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.diamond",
+          "fallback": "Diamond coins per diamond"
+        }
+      ],
+      "width": 240,
       "start": 0,
       "end": 9,
       "step": 1,
       "initial": 8
+    },
+    {
+      "type": "minecraft:boolean",
+      "key": "small",
+      "label": {
+        "translate": "dialog.minted_coins.create.small",
+        "fallback": "Small change (9 small coins = 1 coin)"
+      },
+      "initial": true,
+      "on_true": "1",
+      "on_false": "0"
     }
   ],
-  "yes": {
-    "label": "Create the mint",
-    "action": {
-      "type": "minecraft:dynamic/run_command",
-      "template": "trigger minted_coins set 5$(gold)$(copper)$(iron)$(diamond)"
+  "actions": [
+    {
+      "label": {
+        "translate": "dialog.minted_coins.create.confirm",
+        "fallback": "Create the mint",
+        "color": "green"
+      },
+      "tooltip": {
+        "translate": "dialog.minted_coins.create.confirm.tooltip",
+        "fallback": "9 coins always melt back into 1 ingot. Below 9 per ingot, the mint keeps the difference."
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "trigger minted_coins set 5$(gold)$(copper)$(iron)$(diamond)$(small)"
+      }
+    },
+    {
+      "label": {
+        "translate": "dialog.minted_coins.create.help",
+        "fallback": "How naming works…"
+      },
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "minted_coins:help"
+      }
     }
-  },
-  "no": {
-    "label": "Back",
+  ],
+  "columns": 2,
+  "exit_action": {
+    "label": {
+      "translate": "gui.back",
+      "fallback": "Back"
+    },
     "action": {
       "type": "minecraft:show_dialog",
       "dialog": "minted_coins:menu"

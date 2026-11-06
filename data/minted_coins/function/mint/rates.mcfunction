@@ -9,3 +9,5 @@ execute if data storage minted_coins:tmp rates_of{diamond:0} run data remove sto
 execute if data storage minted_coins:tmp rates_of{iron:0} run data remove storage minted_coins:tmp rates[2]
 execute if data storage minted_coins:tmp rates_of{copper:0} run data remove storage minted_coins:tmp rates[1]
 execute if data storage minted_coins:tmp rates_of{gold:0} run data remove storage minted_coins:tmp rates[0]
+# small change, after the coins
+execute if data storage minted_coins:tmp rates_of{small:1} run data modify storage minted_coins:tmp rates append value {translate:"chat.minted_coins.small_change",fallback:"small change"}

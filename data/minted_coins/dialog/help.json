@@ -1,0 +1,94 @@
+{
+  "type": "minecraft:notice",
+  "title": {
+    "translate": "dialog.minted_coins.help.title",
+    "fallback": "How naming works",
+    "color": "gold"
+  },
+  "body": [
+    {
+      "type": "minecraft:item",
+      "item": {
+        "id": "minecraft:name_tag"
+      },
+      "show_decorations": false,
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.mint",
+          "fallback": "The mint is named after the renamed item in your main hand (a name tag renamed in an anvil, for instance), otherwise \"Mint #N\"."
+        }
+      }
+    },
+    {
+      "type": "minecraft:item",
+      "item": {
+        "id": "minecraft:gold_nugget",
+        "components": {
+          "minecraft:custom_model_data": {
+            "strings": [
+              "minted_coins:gold_coin"
+            ]
+          }
+        }
+      },
+      "show_decorations": false,
+      "show_tooltip": false,
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.coins",
+          "fallback": "Coins are named after a renamed gold, copper or iron nugget, or renamed prismarine crystals, in your inventory (otherwise \"Gold Coin\", \"Copper Coin\", \"Iron Coin\" and \"Diamond Coin\"). These items are only read, not consumed."
+        }
+      }
+    },
+    {
+      "type": "minecraft:item",
+      "show_decorations": false,
+      "show_tooltip": false,
+      "item": {
+        "id": "minecraft:firework_star",
+        "components": {
+          "minecraft:custom_model_data": {
+            "strings": [
+              "minted_coins:small_gold_coin"
+            ]
+          },
+          "minecraft:firework_explosion": {
+            "shape": "small_ball",
+            "colors": [
+              16438858
+            ]
+          }
+        }
+      },
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.small",
+          "fallback": "With small change, the mint also changes each coin into 9 small coins, and 9 of its own small coins back into 1 coin."
+        }
+      }
+    },
+    {
+      "type": "minecraft:plain_message",
+      "width": 300,
+      "contents": {
+        "translate": "dialog.minted_coins.help.rates",
+        "fallback": "9 coins always melt back into 1 ingot, and the mint buys back 9 of its own diamond coins for 1 diamond: below 9 coins, the mint keeps the difference.",
+        "color": "gray"
+      }
+    }
+  ],
+  "action": {
+    "label": {
+      "translate": "gui.back",
+      "fallback": "Back"
+    },
+    "action": {
+      "type": "minecraft:show_dialog",
+      "dialog": "minted_coins:create"
+    }
+  },
+  "pause": false
+}
