@@ -8,6 +8,7 @@
 #   400000 + id  forget a mint that no longer exists
 scoreboard players operation $action minted_coins.data = @s minted_coins
 scoreboard players set @s minted_coins 0
+function minted_coins:session/refresh
 execute if score $action minted_coins.data matches 1 run return run dialog show @s minted_coins:menu
 execute if score $action minted_coins.data matches 2 run return run function minted_coins:admin/list
 execute if score $action minted_coins.data matches 500000..599999 run return run function minted_coins:admin/create

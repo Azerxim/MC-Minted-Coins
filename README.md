@@ -2,7 +2,7 @@
 
 # Minted Coins
 
-A currency nobody can counterfeit. Coins are struck by **mints**: merchants that the server's admins place in the world. No recipe produces coins, so the only way to get them is to bring metal to a mint.
+A currency nobody can counterfeit. Coins are struck by **mints**: merchants that the server's operators place in the world. No recipe produces coins, so the only way to get them is to bring metal to a mint.
 
 ## Features
 
@@ -33,20 +33,18 @@ Every coin carries the name of the mint that struck it (*Struck by Kingdom of Al
 
 Coins from different mints don't stack together, so each civilization can have its own currency, with its own coin names.
 
-### Admin menu
+### Operator menu
 
-Give the admin role to a player (operators only):
+The menu uses Minecraft's own operator system: no tag or role to set up. Operators (permission level 2 or more, the level `/function` requires) open it with:
 
 ```
-/tag <player> add minted_coins.admin
+/function minted_coins:menu
 ```
-
-Admins then open the menu with `/trigger minted_coins` (no operator rights needed):
 
 - **New mint…**: four sliders set the gold, copper, iron and diamond coins per ingot or diamond (8 by default, 0 to leave a coin out), and a checkbox adds small change. The mint appears 2 blocks in front of you, named after the renamed item in your main hand (a name tag renamed in an anvil, for instance), or *Mint #N* otherwise. Its coins are named the same way: a gold nugget renamed *Aldorian Crown* in your inventory names the gold coins, a renamed copper or iron nugget names the copper or iron coins, renamed prismarine crystals name the diamond coins (*Gold Coin*, *Copper Coin*, *Iron Coin* and *Diamond Coin* otherwise). These items are only read, not consumed.
 - **Mints list**: every mint with its position and rates, with **[Teleport]** and **[Remove]** buttons. Removing a mint doesn't affect the coins it already struck.
 
-Players without the tag can't use the trigger.
+The buttons in the menu and in the chat use `/trigger minted_coins`, so no confirmation screen appears, but the trigger only works during a session opened with `/function minted_coins:menu`. The session ends after 5 minutes without an action, when the player logs out, or on `/reload`: a player who loses operator rights can't open the menu again. An operator can also open the menu for another player, for one session, with `/execute as <player> run function minted_coins:menu`.
 
 ### Resource packs
 
