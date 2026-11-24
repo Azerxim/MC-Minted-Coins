@@ -1,7 +1,5 @@
-# /trigger minted_coins only works during a menu session, opened by an operator with /function minted_coins:menu
-execute as @a[scores={minted_coins=1..,minted_coins.session=1..}] at @s run function minted_coins:admin/dispatch
-scoreboard players remove @a[scores={minted_coins.session=1..}] minted_coins.session 1
-execute as @a[scores={minted_coins.session=..0}] run function minted_coins:session/close
-execute as @a[scores={minted_coins.left=1..}] run function minted_coins:session/close
+# /trigger minted_coins.mint.menu is open to every player; the dispatcher only serves the players authorized by /function minted_coins:mint/menu
+scoreboard players enable @a minted_coins.mint.menu
+execute as @a[scores={minted_coins.mint.menu=1..}] at @s run function minted_coins:admin/dispatch
 # mints keep only their own trades, whatever other mods or data packs add to wandering traders
 execute as @e[type=minecraft:wandering_trader,tag=minted_coins.mint] run function minted_coins:mint/guard

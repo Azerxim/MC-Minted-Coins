@@ -45,15 +45,29 @@
       },
       "tooltip": {
         "translate": "dialog.minted_coins.menu.list.tooltip",
-        "fallback": "Every mint with its position and rates, with Teleport and Remove buttons."
+        "fallback": "Every mint with its position and rates, to teleport to it, edit it or remove it."
       },
       "action": {
         "type": "minecraft:run_command",
-        "command": "trigger minted_coins set 2"
+        "command": "trigger minted_coins.mint.menu set 2"
+      }
+    },
+    {
+      "label": {
+        "translate": "dialog.minted_coins.menu.help",
+        "fallback": "Help…"
+      },
+      "tooltip": {
+        "translate": "dialog.minted_coins.menu.help.tooltip",
+        "fallback": "How mints, coins, names and editing work, and who can use this menu."
+      },
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "minted_coins:help"
       }
     }
   ],
-  "columns": 2,
+  "columns": 1,
   "exit_action": {
     "label": {
       "translate": "dialog.minted_coins.close",

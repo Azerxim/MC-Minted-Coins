@@ -20,11 +20,43 @@
     "width": 300,
     "contents": {
       "translate": "dialog.minted_coins.create.body",
-      "fallback": "The mint appears 2 blocks in front of you, named after the item in your main hand. Set a slider to 0 to leave a coin out.",
+      "fallback": "The mint appears 2 blocks in front of you. An empty name is taken from a renamed item, as explained in Help…, or keeps its default. Set a slider to 0 to leave a coin out.",
       "color": "gray"
     }
   },
   "inputs": [
+    {
+      "type": "minecraft:text",
+      "key": "name",
+      "label": {
+        "translate": "dialog.minted_coins.create.name",
+        "fallback": "Mint name"
+      },
+      "width": 240,
+      "initial": "",
+      "max_length": 32
+    },
+    {
+      "type": "minecraft:text",
+      "key": "gold_name",
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.separator",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "gray",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.gold_name",
+          "fallback": "Gold coin name"
+        }
+      ],
+      "width": 240,
+      "initial": "",
+      "max_length": 32
+    },
     {
       "type": "minecraft:number_range",
       "key": "gold",
@@ -47,6 +79,17 @@
       "end": 9,
       "step": 1,
       "initial": 8
+    },
+    {
+      "type": "minecraft:text",
+      "key": "copper_name",
+      "label": {
+        "translate": "dialog.minted_coins.create.copper_name",
+        "fallback": "Copper coin name"
+      },
+      "width": 240,
+      "initial": "",
+      "max_length": 32
     },
     {
       "type": "minecraft:number_range",
@@ -72,6 +115,17 @@
       "initial": 8
     },
     {
+      "type": "minecraft:text",
+      "key": "iron_name",
+      "label": {
+        "translate": "dialog.minted_coins.create.iron_name",
+        "fallback": "Iron coin name"
+      },
+      "width": 240,
+      "initial": "",
+      "max_length": 32
+    },
+    {
       "type": "minecraft:number_range",
       "key": "iron",
       "label": [
@@ -93,6 +147,17 @@
       "end": 9,
       "step": 1,
       "initial": 8
+    },
+    {
+      "type": "minecraft:text",
+      "key": "diamond_name",
+      "label": {
+        "translate": "dialog.minted_coins.create.diamond_name",
+        "fallback": "Diamond coin name"
+      },
+      "width": 240,
+      "initial": "",
+      "max_length": 32
     },
     {
       "type": "minecraft:number_range",
@@ -142,17 +207,7 @@
       },
       "action": {
         "type": "minecraft:dynamic/run_command",
-        "template": "trigger minted_coins set 5$(gold)$(copper)$(iron)$(diamond)$(small)"
-      }
-    },
-    {
-      "label": {
-        "translate": "dialog.minted_coins.create.help",
-        "fallback": "How naming works…"
-      },
-      "action": {
-        "type": "minecraft:show_dialog",
-        "dialog": "minted_coins:help"
+        "template": "function minted_coins:admin/create {gold:$(gold),copper:$(copper),iron:$(iron),diamond:$(diamond),small:$(small),name:\"$(name)\",gold_name:\"$(gold_name)\",copper_name:\"$(copper_name)\",iron_name:\"$(iron_name)\",diamond_name:\"$(diamond_name)\"}"
       }
     }
   ],

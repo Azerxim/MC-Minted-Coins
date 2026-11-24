@@ -1,0 +1,6 @@
+# as a mint, with storage minted_coins:tmp legacy_cur {item, model, mint, name, new_name}: 1 coin under the former name -> 1 current coin
+$data modify storage minted_coins:tmp recipe set value {buy:{id:"$(item)",count:1,components:{"minecraft:item_name":"","minecraft:custom_data":{minted_coins:{mint:$(mint)}},"minecraft:custom_model_data":{strings:["minted_coins:$(model)"]}}},sell:{id:"$(item)",count:1,components:{"minecraft:item_name":"","minecraft:lore":[{translate:"lore.minted_coins.struck_by",fallback:"Struck by %s",with:[""],color:"gray",italic:false}],"minecraft:custom_data":{minted_coins:{mint:$(mint)}},"minecraft:custom_model_data":{strings:["minted_coins:$(model)"]}}},maxUses:2147483647,rewardExp:0b,xp:0,priceMultiplier:0.0f,demand:0,specialPrice:0}
+data modify storage minted_coins:tmp recipe.buy.components."minecraft:item_name" set from storage minted_coins:tmp legacy_cur.name
+data modify storage minted_coins:tmp recipe.sell.components."minecraft:item_name" set from storage minted_coins:tmp legacy_cur.new_name
+data modify storage minted_coins:tmp recipe.sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
+data modify entity @s Offers.Recipes append from storage minted_coins:tmp recipe

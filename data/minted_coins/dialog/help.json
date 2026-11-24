@@ -2,7 +2,7 @@
   "type": "minecraft:notice",
   "title": {
     "translate": "dialog.minted_coins.help.title",
-    "fallback": "How naming works",
+    "fallback": "Minted Coins help",
     "color": "gold"
   },
   "body": [
@@ -16,7 +16,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.mint",
-          "fallback": "The mint is named after the renamed item in your main hand (a name tag renamed in an anvil, for instance), otherwise \"Mint #N\"."
+          "fallback": "The mint takes the name typed in the Mint name field. Left empty, it is named after the renamed item in your main hand (a name tag renamed in an anvil, for instance), otherwise \"Mint #N\"."
         }
       }
     },
@@ -38,7 +38,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.coins",
-          "fallback": "Coins are named after a renamed gold, copper or iron nugget, or renamed prismarine crystals, in your inventory (otherwise \"Gold Coin\", \"Copper Coin\", \"Iron Coin\" and \"Diamond Coin\"). These items are only read, not consumed."
+          "fallback": "Coins take the names typed in the coin name fields. Left empty, they are named after a renamed gold, copper or iron nugget, or renamed prismarine crystals, in your inventory (otherwise \"Gold Coin\", \"Copper Coin\", \"Iron Coin\" and \"Diamond Coin\"). These items are only read, not consumed."
         }
       }
     },
@@ -78,6 +78,34 @@
         "fallback": "9 coins always melt back into 1 ingot, and the mint buys back 9 of its own diamond coins for 1 diamond: below 9 coins, the mint keeps the difference.",
         "color": "gray"
       }
+    },
+    {
+      "type": "minecraft:item",
+      "item": {
+        "id": "minecraft:writable_book"
+      },
+      "show_decorations": false,
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.edit",
+          "fallback": "Edit… on the page of a mint changes its names, rates and small change: the mint is replaced by a new one at the same place, and the coins it already struck stay its own. Coins struck before a renaming keep their old name: the mint exchanges them one for one for coins under the new name."
+        }
+      }
+    },
+    {
+      "type": "minecraft:item",
+      "item": {
+        "id": "minecraft:command_block"
+      },
+      "show_decorations": false,
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.access",
+          "fallback": "Operators open this menu with /function minted_coins:mint/menu, which also lets them open it later with /trigger minted_coins.mint.menu. Creating or editing a mint runs an operator command: Minecraft asks you to confirm it."
+        }
+      }
     }
   ],
   "action": {
@@ -87,7 +115,7 @@
     },
     "action": {
       "type": "minecraft:show_dialog",
-      "dialog": "minted_coins:create"
+      "dialog": "minted_coins:menu"
     }
   },
   "pause": false

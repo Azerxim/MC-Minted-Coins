@@ -1,12 +1,16 @@
-scoreboard objectives add minted_coins trigger
+# the trigger was named minted_coins, then minted_coins.menu, before
+scoreboard objectives remove minted_coins
+scoreboard objectives remove minted_coins.menu
+scoreboard objectives add minted_coins.mint.menu trigger
 scoreboard objectives add minted_coins.data dummy
 scoreboard objectives add minted_coins.id dummy
 scoreboard objectives add minted_coins.trades dummy
-scoreboard objectives add minted_coins.session dummy
-scoreboard objectives add minted_coins.left minecraft.custom:minecraft.leave_game
-# a reload closes every menu session (and the trigger left enabled by older versions)
-scoreboard players reset * minted_coins
-scoreboard players reset * minted_coins.session
+# players authorized by /function minted_coins:mint/menu
+scoreboard objectives add minted_coins.op dummy
+# menu sessions of earlier development versions
+scoreboard objectives remove minted_coins.session
+scoreboard objectives remove minted_coins.left
+scoreboard players reset * minted_coins.mint.menu
 scoreboard players set $10 minted_coins.data 10
 scoreboard players set $100 minted_coins.data 100
 scoreboard players set $1000 minted_coins.data 1000

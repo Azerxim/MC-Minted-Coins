@@ -1,17 +1,16 @@
-# $action = 5GCIDS, sent by the minted_coins:create dialog: G gold / C copper / I iron / D diamond coins per ingot or diamond (0 = not struck), S small change (1 = yes)
-scoreboard players operation $gold minted_coins.data = $action minted_coins.data
-scoreboard players remove $gold minted_coins.data 500000
-execute if score $gold minted_coins.data matches ..9 run return run tellraw @s {translate:"chat.minted_coins.no_coin",fallback:"Choose at least one coin to strike.",color:"red"}
-scoreboard players operation $copper minted_coins.data = $gold minted_coins.data
-scoreboard players operation $iron minted_coins.data = $gold minted_coins.data
-scoreboard players operation $diamond minted_coins.data = $gold minted_coins.data
-scoreboard players operation $small minted_coins.data = $gold minted_coins.data
-scoreboard players operation $gold minted_coins.data /= $10000 minted_coins.data
-scoreboard players operation $copper minted_coins.data /= $1000 minted_coins.data
-scoreboard players operation $copper minted_coins.data %= $10 minted_coins.data
-scoreboard players operation $iron minted_coins.data /= $100 minted_coins.data
-scoreboard players operation $iron minted_coins.data %= $10 minted_coins.data
-scoreboard players operation $diamond minted_coins.data /= $10 minted_coins.data
-scoreboard players operation $diamond minted_coins.data %= $10 minted_coins.data
-scoreboard players operation $small minted_coins.data %= $10 minted_coins.data
+# /function minted_coins:admin/create {gold:G,copper:C,iron:I,diamond:D,small:S,name:"N",gold_name:"…",copper_name:"…",iron_name:"…",diamond_name:"…"},
+# sent by the minted_coins:create dialog
+# (operators only, like any /function): G gold / C copper / I iron / D diamond coins per ingot or diamond (0 = not struck),
+# S small change (1 = yes), N the name of the mint ("" = the renamed item in the main hand, otherwise "Mint #<id>"),
+# <coin>_name the name of its coins ("" = a renamed nugget / prismarine crystals in the inventory, otherwise "Gold Coin"…)
+execute unless entity @s[type=minecraft:player] run return fail
+scoreboard players set @s minted_coins.op 1
+$scoreboard players set $gold minted_coins.data $(gold)
+$scoreboard players set $copper minted_coins.data $(copper)
+$scoreboard players set $iron minted_coins.data $(iron)
+$scoreboard players set $diamond minted_coins.data $(diamond)
+$scoreboard players set $small minted_coins.data $(small)
+execute if score $gold minted_coins.data matches 0 if score $copper minted_coins.data matches 0 if score $iron minted_coins.data matches 0 if score $diamond minted_coins.data matches 0 run return run tellraw @s {translate:"chat.minted_coins.no_coin",fallback:"Choose at least one coin to strike.",color:"red"}
+$data modify storage minted_coins:tmp new_name set value "$(name)"
+$data modify storage minted_coins:tmp new_coin_names set value {gold:"$(gold_name)",copper:"$(copper_name)",iron:"$(iron_name)",diamond:"$(diamond_name)"}
 function minted_coins:mint/create

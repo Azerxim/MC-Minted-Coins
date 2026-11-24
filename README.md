@@ -35,16 +35,22 @@ Coins from different mints don't stack together, so each civilization can have i
 
 ### Operator menu
 
-The menu uses Minecraft's own operator system: no tag or role to set up. Operators (permission level 2 or more, the level `/function` requires) open it with:
+The menu relies on Minecraft's own operator system: no tag or role to set up. An operator (permission level 2 or more, the level `/function` requires) opens it the first time with:
 
 ```
-/function minted_coins:menu
+/function minted_coins:mint/menu
 ```
 
-- **New mint…**: four sliders set the gold, copper, iron and diamond coins per ingot or diamond (8 by default, 0 to leave a coin out), and a checkbox adds small change. The mint appears 2 blocks in front of you, named after the renamed item in your main hand (a name tag renamed in an anvil, for instance), or *Mint #N* otherwise. Its coins are named the same way: a gold nugget renamed *Aldorian Crown* in your inventory names the gold coins, a renamed copper or iron nugget names the copper or iron coins, renamed prismarine crystals name the diamond coins (*Gold Coin*, *Copper Coin*, *Iron Coin* and *Diamond Coin* otherwise). These items are only read, not consumed.
-- **Mints list**: every mint with its position and rates, with **[Teleport]** and **[Remove]** buttons. Removing a mint doesn't affect the coins it already struck.
+This also authorizes them: from then on, `/trigger minted_coins.mint.menu` opens the menu, even after a reconnection. Every player can type the trigger, but players who were never authorized only get a message in the chat explaining that the menu is for operators.
 
-The buttons in the menu and in the chat use `/trigger minted_coins`, so no confirmation screen appears, but the trigger only works during a session opened with `/function minted_coins:menu`. The session ends after 5 minutes without an action, when the player logs out, or on `/reload`: a player who loses operator rights can't open the menu again. An operator can also open the menu for another player, for one session, with `/execute as <player> run function minted_coins:menu`.
+- **New mint…**: a field sets the name of the mint, then, for each coin, a field sets its name and a slider sets the coins per ingot or diamond (8 by default, 0 to leave a coin out); a checkbox adds small change. The mint appears 2 blocks in front of you. A name left empty is taken from a renamed item: the item in your main hand (a name tag renamed in an anvil, for instance) names the mint, a gold nugget renamed *Aldorian Crown* in your inventory names the gold coins, a renamed copper or iron nugget names the copper or iron coins, renamed prismarine crystals name the diamond coins. These items are only read, not consumed. Otherwise the defaults are *Mint #N*, *Gold Coin*, *Copper Coin*, *Iron Coin* and *Diamond Coin*. The **Create the mint** button runs `/function minted_coins:admin/create`, so Minecraft asks you to confirm this operator command. A name can't contain a double quote (`"`).
+- **Mints list**: one button per mint (hover it to see its rates). Each opens the page of the mint, with its position and rates, a **Teleport** button, an **Edit…** button and a **Remove…** button that asks for confirmation. Removing a mint doesn't affect the coins it already struck.
+- **Edit…**: the same fields as **New mint…**, filled with the current values: names of the mint and of its coins (a name left empty keeps the current one), rates and small change. Saving replaces the mint with a new one at the same place, with the same mint id, so the coins it already struck stay its own. Renamed coins: the coins already struck keep their old name, and the mint gets a recoinage trade that exchanges them one for one for coins under the new name (small coins too, when the mint had small change). Each former name keeps its trade; going back to a former name removes it. A coin set to 0 is no longer struck, changed or bought back by this mint. Like **Create the mint**, **Save** runs an operator command that Minecraft asks you to confirm.
+- **Help…**: how mints, coins, names and editing work, and who can use the menu.
+
+The other buttons in the menus use `/trigger minted_coins.mint.menu`, so no confirmation screen appears. Minecraft doesn't tell data packs who is an operator, so the authorization stays when a player loses operator rights: remove it with `/execute as <player> run function minted_coins:revoke`, or for everyone with `/scoreboard players reset * minted_coins.op`. An operator can authorize another player with `/execute as <player> run function minted_coins:mint/menu`.
+
+Dialogs are only loaded with the world: after updating the data pack, `/reload` is not enough for the menus, leave and rejoin the world.
 
 ### Resource packs
 

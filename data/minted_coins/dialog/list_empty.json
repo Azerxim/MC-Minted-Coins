@@ -1,0 +1,55 @@
+{
+  "type": "minecraft:multi_action",
+  "title": [
+    "",
+    {
+      "translate": "dialog.minted_coins.icon.gold",
+      "fallback": "",
+      "font": "minted_coins:dialog",
+      "color": "white",
+      "shadow_color": 0
+    },
+    {
+      "translate": "dialog.minted_coins.list.title",
+      "fallback": "Mints",
+      "color": "gold"
+    }
+  ],
+  "body": {
+    "type": "minecraft:plain_message",
+    "width": 300,
+    "contents": {
+      "translate": "dialog.minted_coins.list.empty",
+      "fallback": "No mint yet.",
+      "color": "gray"
+    }
+  },
+  "actions": [
+    {
+      "label": {
+        "translate": "dialog.minted_coins.menu.new",
+        "fallback": "New mint…"
+      },
+      "tooltip": {
+        "translate": "dialog.minted_coins.menu.new.tooltip",
+        "fallback": "Place a mint 2 blocks in front of you and choose the coins it strikes."
+      },
+      "action": {
+        "type": "minecraft:show_dialog",
+        "dialog": "minted_coins:create"
+      }
+    }
+  ],
+  "columns": 1,
+  "exit_action": {
+    "label": {
+      "translate": "gui.back",
+      "fallback": "Back"
+    },
+    "action": {
+      "type": "minecraft:show_dialog",
+      "dialog": "minted_coins:menu"
+    }
+  },
+  "pause": false
+}
