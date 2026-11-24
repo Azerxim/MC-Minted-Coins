@@ -66,7 +66,30 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.small",
-          "fallback": "With small change, the mint also changes each coin into 9 small coins, and 9 of its own small coins back into 1 coin."
+          "fallback": "With small change, the mint also changes each coin into small coins, as many as it strikes coins per ingot (or per diamond), and changes them back the same way."
+        }
+      }
+    },
+    {
+      "type": "minecraft:item",
+      "show_decorations": true,
+      "show_tooltip": false,
+      "item": {
+        "id": "minecraft:copper_nugget",
+        "count": 64,
+        "components": {
+          "minecraft:custom_model_data": {
+            "strings": [
+              "minted_coins:copper_coin"
+            ]
+          }
+        }
+      },
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.conversion",
+          "fallback": "Conversion order: each coin has a number (0 = not converted). The mint changes 64 coins of a number into 1 coin of the next number among the coins it strikes, and back. By default: copper 1, iron 2, gold 3, diamond 4, so 64 copper coins = 1 iron coin, 64 iron coins = 1 gold coin, 64 gold coins = 1 diamond coin."
         }
       }
     },
@@ -114,7 +137,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.purse",
-          "fallback": "Each mint sells its purse for 1 leather and 1 string. Put its coins in it like in a bundle, without limit: anything else is handed back. Right-click with it to see what it holds and withdraw coins."
+          "fallback": "Each mint sells its purse for 1 leather and 1 string. It works like a bundle, without limit: put coins of its mint in it, take them out, choose which ones. It shows up to 32 coins, keeps the rest in reserve and shows more as you take them out. Anything else is handed back."
         }
       }
     },

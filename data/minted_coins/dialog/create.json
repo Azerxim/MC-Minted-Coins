@@ -20,7 +20,7 @@
     "width": 300,
     "contents": {
       "translate": "dialog.minted_coins.create.body",
-      "fallback": "The mint appears 2 blocks in front of you. An empty name is taken from a renamed item, as explained in Help…, or keeps its default. Set a slider to 0 to leave a coin out.",
+      "fallback": "The mint appears 2 blocks in front of you. An empty name is taken from a renamed item, as explained in Help…, or keeps its default. Set a slider to 0 to leave a coin out. Conversion order: 64 coins are worth 1 coin of the next number (0 = not converted).",
       "color": "gray"
     }
   },
@@ -81,6 +81,19 @@
       "initial": 8
     },
     {
+      "type": "minecraft:number_range",
+      "key": "gold_rank",
+      "label": {
+        "translate": "dialog.minted_coins.create.rank",
+        "fallback": "Conversion order (0 = none)"
+      },
+      "width": 240,
+      "start": 0,
+      "end": 4,
+      "step": 1,
+      "initial": 3
+    },
+    {
       "type": "minecraft:text",
       "key": "copper_name",
       "label": {
@@ -113,6 +126,19 @@
       "end": 9,
       "step": 1,
       "initial": 8
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "copper_rank",
+      "label": {
+        "translate": "dialog.minted_coins.create.rank",
+        "fallback": "Conversion order (0 = none)"
+      },
+      "width": 240,
+      "start": 0,
+      "end": 4,
+      "step": 1,
+      "initial": 1
     },
     {
       "type": "minecraft:text",
@@ -149,6 +175,19 @@
       "initial": 8
     },
     {
+      "type": "minecraft:number_range",
+      "key": "iron_rank",
+      "label": {
+        "translate": "dialog.minted_coins.create.rank",
+        "fallback": "Conversion order (0 = none)"
+      },
+      "width": 240,
+      "start": 0,
+      "end": 4,
+      "step": 1,
+      "initial": 2
+    },
+    {
       "type": "minecraft:text",
       "key": "diamond_name",
       "label": {
@@ -183,11 +222,24 @@
       "initial": 8
     },
     {
+      "type": "minecraft:number_range",
+      "key": "diamond_rank",
+      "label": {
+        "translate": "dialog.minted_coins.create.rank",
+        "fallback": "Conversion order (0 = none)"
+      },
+      "width": 240,
+      "start": 0,
+      "end": 4,
+      "step": 1,
+      "initial": 4
+    },
+    {
       "type": "minecraft:boolean",
       "key": "small",
       "label": {
         "translate": "dialog.minted_coins.create.small",
-        "fallback": "Small change (9 small coins = 1 coin)"
+        "fallback": "Small change (1 coin = as many small coins as coins per ingot)"
       },
       "initial": true,
       "on_true": "1",
@@ -207,7 +259,7 @@
       },
       "action": {
         "type": "minecraft:dynamic/run_command",
-        "template": "function minted_coins:admin/create {gold:$(gold),copper:$(copper),iron:$(iron),diamond:$(diamond),small:$(small),name:\"$(name)\",gold_name:\"$(gold_name)\",copper_name:\"$(copper_name)\",iron_name:\"$(iron_name)\",diamond_name:\"$(diamond_name)\"}"
+        "template": "function minted_coins:admin/create {gold:$(gold),copper:$(copper),iron:$(iron),diamond:$(diamond),small:$(small),gold_rank:$(gold_rank),copper_rank:$(copper_rank),iron_rank:$(iron_rank),diamond_rank:$(diamond_rank),name:\"$(name)\",gold_name:\"$(gold_name)\",copper_name:\"$(copper_name)\",iron_name:\"$(iron_name)\",diamond_name:\"$(diamond_name)\"}"
       }
     }
   ],

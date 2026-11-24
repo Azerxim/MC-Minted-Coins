@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "use": {
+    "using": {
       "trigger": "minecraft:using_item",
       "conditions": {
         "item": {
@@ -17,6 +17,6 @@
     }
   },
   "rewards": {
-    "function": "minted_coins:purse/use"
+    "function": "minted_coins:purse/using"
   }
 }

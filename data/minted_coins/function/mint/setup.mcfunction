@@ -43,6 +43,10 @@ execute store result storage minted_coins:tmp mint.copper int 1 run scoreboard p
 execute store result storage minted_coins:tmp mint.iron int 1 run scoreboard players get $iron minted_coins.data
 execute store result storage minted_coins:tmp mint.diamond int 1 run scoreboard players get $diamond minted_coins.data
 execute store result storage minted_coins:tmp mint.small int 1 run scoreboard players get $small minted_coins.data
+execute store result storage minted_coins:tmp mint.gold_rank int 1 run scoreboard players get $gold_rank minted_coins.data
+execute store result storage minted_coins:tmp mint.copper_rank int 1 run scoreboard players get $copper_rank minted_coins.data
+execute store result storage minted_coins:tmp mint.iron_rank int 1 run scoreboard players get $iron_rank minted_coins.data
+execute store result storage minted_coins:tmp mint.diamond_rank int 1 run scoreboard players get $diamond_rank minted_coins.data
 data modify storage minted_coins:tmp mint.dim set value "minecraft:overworld"
 data modify storage minted_coins:tmp mint.dim set from entity @e[tag=minted_coins.self,limit=1] Dimension
 data modify storage minted_coins:tmp mint.x set from entity @s Pos[0]

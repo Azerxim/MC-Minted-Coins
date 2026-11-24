@@ -18,8 +18,11 @@ Légende :
 | Modifier un atelier | DP + RP | Mêmes champs qu'à la création, préremplis. L'atelier est recréé au même endroit avec le même id, ses pièces restent les siennes. Les ateliers créés avant la 1.1 peuvent ainsi gagner la petite monnaie. Une pièce renommée garde un échange de refrappe : 1 pièce sous l'ancien nom contre 1 sous le nouveau. |
 | Piles de pièces | RP | Le modèle grandit avec la quantité : 1 à 8 pièces, petite pile de 9 à 31, grande pile de 32 à 59, tas à partir de 60. Pour les pièces et la petite monnaie, en 3D (modèles Blockbench) et en icône d'inventaire. |
 | Textures en 32x | RP | Icônes des pièces, de la petite monnaie et des piles redessinées en 32×32, icônes des menus en 22×22. |
-| Porte-monnaie | DP + RP | Vendu par chaque atelier (1 cuir + 1 ficelle). Clic droit : il range les pièces de son atelier de l'inventaire, sans limite (le *bundle* vanilla plafonne à 64 objets, d'où un contenu gardé dans les données de l'objet), puis un menu permet d'en retirer. Apparence vide ou pleine, contenu dans l'infobulle. |
-| Aide | DP + RP | Un écran d'aide accessible depuis l'accueil : noms, taux, petite monnaie, modification et accès. |
+| Porte-monnaie | DP + RP | Vendu par chaque atelier (1 cuir + 1 ficelle), en tête de sa liste. Il fonctionne comme un *bundle*, sans limite : on y glisse les pièces de son atelier, on les retire, on choisit lesquelles. Le bundle en montre 32 au plus (son contenu natif plafonne à 64), le reste est gardé dans les données de l'objet et réapparaît à mesure qu'on en retire. Apparence vide ou pleine, totaux dans l'infobulle. |
+| Espagnol et allemand | RP | Traductions complètes, icônes des curseurs placées pour chaque langue. |
+| Comptoir de l'atelier | DP + RP | Le marchand se tient derrière un comptoir (modèle 3D Blockbench) : presse à frapper, balance et piles de pièces. Une *item display* sans boîte de collision, posée et retirée avec l'atelier ; un tonneau sans le resource pack. |
+| Conversion entre pièces | DP + RP | L'atelier change 64 pièces contre 1 pièce du rang au-dessus, et inversement : par défaut 64 cuivre = 1 fer, 64 fer = 1 or, 64 or = 1 diamant. L'ordre (0 à 4, 0 = pas de conversion) se règle pièce par pièce dans les menus de création et de modification ; une pièce non frappée est sautée. |
+| Aide | DP + RP | Un écran d'aide accessible depuis l'accueil : noms, taux, petite monnaie, conversion, modification et accès. |
 
 ## Pistes proposées
 
@@ -43,12 +46,12 @@ Légende :
 | Fonction | Pack | Effort | Description |
 |---|---|---|---|
 | Effigies par atelier | DP + RP | M | Plusieurs dessins de pièce (couronne, soleil, ancre…) au choix à la création de l'atelier. Chaque monnaie a son visage, sur le même principe que `custom_model_data`. |
-| Décor de l'atelier | DP | M | Un comptoir et une presse à frapper autour du marchand, en *display entities*, retirés avec l'atelier. |
 | Textures 3D en 32x | RP | S | Les textures des pièces et des piles en 3D (`*_coin_3d.png`) restent en 16×16 : les passer en 32× pour suivre les icônes, en redessinant la tranche des pièces. |
-| Plus de langues | RP | S | Espagnol, allemand, etc. Le script `tools/slider_icons.py` replace les icônes des curseurs pour chaque nouvelle langue. |
+| Plus de langues | RP | S | Italien, portugais, etc. Le script `tools/slider_icons.py` replace les icônes des curseurs pour chaque nouvelle langue. |
 
 ### À étudier
 
 - **Pièce d'émeraude** : faire le lien avec l'économie des villageois. Il faut trouver un objet de base qui ne crée pas d'exploit.
 - **Pièce de netherite**, au-dessus du diamant. Même contrainte sur l'objet de base : les débris et les lingots ont des recettes.
+- **Texture propre au marchand de l'atelier** avec le mod Entity Texture Features (ou OptiFine) côté client : le resource pack donnerait une texture aux seuls marchands portant le tag `minted_coins.mint`, sans toucher aux autres marchands ambulants. Sans le mod, rien ne change : en vanilla, une texture d'entité vaut pour tout le type.
 - **Coffre-fort ou banque** : déposer des pièces contre un solde. Puissant, mais un solde stocké dans un scoreboard se marie mal avec l'idée d'une monnaie physique, impossible à contrefaire.

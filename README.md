@@ -15,7 +15,10 @@ A mint is an immobile, invulnerable merchant that trades:
 - 1 iron ingot → 8 iron coins
 - 1 diamond → 8 diamond coins
 - 9 of its own diamond coins → 1 diamond
-- with small change: 1 coin → 9 small coins, and 9 of its own small coins → 1 coin, for each metal it strikes
+- with small change: 1 coin → as many small coins as it strikes coins per ingot (or per diamond), and back, for each metal it strikes
+- conversion: 64 copper coins ↔ 1 iron coin, 64 iron coins ↔ 1 gold coin, 64 gold coins ↔ 1 diamond coin (the order can be changed)
+
+The mint stands behind its **counter**, with a coin press, scales and stacks of coins (a 3D model of the resource pack; without it, a barrel). The counter has no hitbox: clicks go through to the merchant. It goes away with the mint.
 
 The number of coins per ingot or diamond (0 to 9) is chosen for each mint when it is created. At 0, the mint doesn't strike that coin at all and the trade doesn't appear, so a mint can strike only gold, for instance.
 
@@ -25,13 +28,19 @@ There is no diamond nugget, so diamond coins are struck on prismarine crystals. 
 
 ### Small change
 
-When a mint is created with **Small change** ticked, it also changes each of its coins into 9 small coins (*Small Gold Coin*, etc.), and 9 of its own small coins back into 1 coin. Small coins are struck on firework stars, tinted with the colour of their metal: no recipe turns them into anything worth more, and only the mint that struck them takes them back.
+When a mint is created with **Small change** ticked, it also changes each of its coins into small coins (*Small Gold Coin*, etc.), as many as it strikes coins per ingot (or per diamond), and that many of its own small coins back into 1 coin. At 8 coins per ingot, 1 coin is worth 8 small coins. Small coins are struck on firework stars, tinted with the colour of their metal: no recipe turns them into anything worth more, and only the mint that struck them takes them back.
+
+### Conversion
+
+Each coin has a **conversion order**, a number from 0 to 4 set for each mint when it is created or edited. The mint changes 64 of its coins of one number into 1 of its coins of the next number among the coins it strikes, and 1 into 64 back. By default copper is 1, iron 2, gold 3 and diamond 4: 64 copper coins = 1 iron coin, 64 iron coins = 1 gold coin, 64 gold coins = 1 diamond coin. A coin set to 0, or not struck, is left out of the chain: without iron, 64 copper coins are worth 1 gold coin. Two struck coins can't share a number. Mints created before this version get the conversion trades once edited.
 
 ### Purse
 
-Each mint also sells its **purse** for 1 leather and 1 string. It works like a bundle: in your inventory, put coins of its mint in it (coins and small coins, whatever name they were struck under). They join its contents **without any limit**, and the bundle empties itself, ready for more; anything else is handed back. Right-click with the purse in your hand to see what it holds: choose a kind of coin and an amount (1 to 64), then **Withdraw**, or **Withdraw all**. The coins come back exactly as the mint strikes them, under its current names, so they stack with the others.
+Each mint also sells its **purse** for 1 leather and 1 string. It works like a bundle, **without any limit**: in your inventory, put coins of its mint in it (coins and small coins, whatever name they were struck under), take them out, pick which ones with the scroll wheel. The bundle shows up to 32 coins and keeps the rest in reserve: as you take coins out, it shows more. Anything else put in it is handed back.
 
-The purse lists its contents in its tooltip and looks full or empty. It is a physical item: whoever holds it holds the coins. Without the resource pack, it looks like a bundle.
+Its tooltip gives the total of each kind of coin, and it looks full or empty. Right-clicking with it doesn't spill your coins: unlike a bundle, it puts the coins it shows back in its reserve while you hold the button, and shows them again once you let go. Coins taken out come back exactly as the mint strikes them, under its current names, so they stack with the others. It is a physical item: whoever holds it holds the coins. Without the resource pack, it looks like a bundle.
+
+In creative mode, the purse is a plain bundle (64 coins at most): the creative inventory sends the client's copy of each slot back to the server, which would undo every change of the purse. Back in survival or adventure mode, its reserve takes in what it holds at the next change of the inventory.
 
 ### Coins can't be counterfeited
 
@@ -49,9 +58,9 @@ The menu relies on Minecraft's own operator system: no tag or role to set up. An
 
 This also authorizes them: from then on, `/trigger minted_coins.mint.menu` opens the menu, even after a reconnection. Every player can type the trigger, but players who were never authorized only get a message in the chat explaining that the menu is for operators.
 
-- **New mint…**: a field sets the name of the mint, then, for each coin, a field sets its name and a slider sets the coins per ingot or diamond (8 by default, 0 to leave a coin out); a checkbox adds small change. The mint appears 2 blocks in front of you. A name left empty is taken from a renamed item: the item in your main hand (a name tag renamed in an anvil, for instance) names the mint, a gold nugget renamed *Aldorian Crown* in your inventory names the gold coins, a renamed copper or iron nugget names the copper or iron coins, renamed prismarine crystals name the diamond coins. These items are only read, not consumed. Otherwise the defaults are *Mint #N*, *Gold Coin*, *Copper Coin*, *Iron Coin* and *Diamond Coin*. The **Create the mint** button runs `/function minted_coins:admin/create`, so Minecraft asks you to confirm this operator command. A name can't contain a double quote (`"`).
+- **New mint…**: a field sets the name of the mint, then, for each coin, a field sets its name and a slider sets the coins per ingot or diamond (8 by default, 0 to leave a coin out); a slider sets its conversion order (copper 1, iron 2, gold 3, diamond 4 by default, 0 for none); a checkbox adds small change. The mint appears 2 blocks in front of you. A name left empty is taken from a renamed item: the item in your main hand (a name tag renamed in an anvil, for instance) names the mint, a gold nugget renamed *Aldorian Crown* in your inventory names the gold coins, a renamed copper or iron nugget names the copper or iron coins, renamed prismarine crystals name the diamond coins. These items are only read, not consumed. Otherwise the defaults are *Mint #N*, *Gold Coin*, *Copper Coin*, *Iron Coin* and *Diamond Coin*. The **Create the mint** button runs `/function minted_coins:admin/create`, so Minecraft asks you to confirm this operator command. A name can't contain a double quote (`"`).
 - **Mints list**: one button per mint (hover it to see its rates). Each opens the page of the mint, with its position and rates, a **Teleport** button, an **Edit…** button and a **Remove…** button that asks for confirmation. Removing a mint doesn't affect the coins it already struck.
-- **Edit…**: the same fields as **New mint…**, filled with the current values: names of the mint and of its coins (a name left empty keeps the current one), rates and small change. Saving replaces the mint with a new one at the same place, with the same mint id, so the coins it already struck stay its own. Renamed coins: the coins already struck keep their old name, and the mint gets a recoinage trade that exchanges them one for one for coins under the new name (small coins too, when the mint had small change). Each former name keeps its trade; going back to a former name removes it. A coin set to 0 is no longer struck, changed or bought back by this mint. Like **Create the mint**, **Save** runs an operator command that Minecraft asks you to confirm.
+- **Edit…**: the same fields as **New mint…**, filled with the current values: names of the mint and of its coins (a name left empty keeps the current one), rates, conversion order and small change. Saving replaces the mint with a new one at the same place, with the same mint id, so the coins it already struck stay its own. Renamed coins: the coins already struck keep their old name, and the mint gets a recoinage trade that exchanges them one for one for coins under the new name (small coins too, when the mint had small change). Each former name keeps its trade; going back to a former name removes it. A coin set to 0 is no longer struck, changed or bought back by this mint. Like **Create the mint**, **Save** runs an operator command that Minecraft asks you to confirm.
 - **Help…**: how mints, coins, names and editing work, and who can use the menu.
 
 The other buttons in the menus use `/trigger minted_coins.mint.menu`, so no confirmation screen appears. Minecraft doesn't tell data packs who is an operator, so the authorization stays when a player loses operator rights: remove it with `/execute as <player> run function minted_coins:revoke`, or for everyone with `/scoreboard players reset * minted_coins.op`. An operator can authorize another player with `/execute as <player> run function minted_coins:mint/menu`.

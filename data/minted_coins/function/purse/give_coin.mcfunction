@@ -1,2 +1,0 @@
-# {item, model, name, mint, mint_name, count}: coins exactly like the ones the mint strikes, so that they stack together
-$give @s $(item)[minecraft:item_name=$(name),minecraft:lore=[{translate:"lore.minted_coins.struck_by",fallback:"Struck by %s",with:[$(mint_name)],color:"gray",italic:false}],minecraft:custom_data={minted_coins:{mint:$(mint)}},minecraft:custom_model_data={strings:["minted_coins:$(model)"]}] $(count)
