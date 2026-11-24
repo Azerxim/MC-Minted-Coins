@@ -54,9 +54,7 @@ execute store result storage minted_coins:tmp mint.bz int 1 run data get entity 
 scoreboard players operation $value minted_coins.data = $last_id minted_coins.data
 scoreboard players add $value minted_coins.data 100000
 execute store result storage minted_coins:tmp mint.goto int 1 run scoreboard players get $value minted_coins.data
-scoreboard players add $value minted_coins.data 100000
-execute store result storage minted_coins:tmp mint.remove int 1 run scoreboard players get $value minted_coins.data
-scoreboard players add $value minted_coins.data 100000
+scoreboard players add $value minted_coins.data 200000
 execute store result storage minted_coins:tmp mint.confirm int 1 run scoreboard players get $value minted_coins.data
 scoreboard players add $value minted_coins.data 100000
 execute store result storage minted_coins:tmp mint.forget int 1 run scoreboard players get $value minted_coins.data
