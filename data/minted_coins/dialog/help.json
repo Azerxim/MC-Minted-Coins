@@ -96,6 +96,31 @@
     {
       "type": "minecraft:item",
       "item": {
+        "id": "minecraft:bundle",
+        "components": {
+          "minecraft:custom_model_data": {
+            "strings": [
+              "minted_coins:purse"
+            ],
+            "flags": [
+              true
+            ]
+          }
+        }
+      },
+      "show_decorations": false,
+      "show_tooltip": false,
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.purse",
+          "fallback": "Each mint sells its purse for 1 leather and 1 string. Put its coins in it like in a bundle, without limit: anything else is handed back. Right-click with it to see what it holds and withdraw coins."
+        }
+      }
+    },
+    {
+      "type": "minecraft:item",
+      "item": {
         "id": "minecraft:command_block"
       },
       "show_decorations": false,

@@ -7,6 +7,10 @@ scoreboard objectives add minted_coins.id dummy
 scoreboard objectives add minted_coins.trades dummy
 # players authorized by /function minted_coins:mint/menu
 scoreboard objectives add minted_coins.op dummy
+# purses: a short delay between two dialogs, and the withdraw buttons of their dialog
+scoreboard objectives remove minted_coins.purse_use
+scoreboard objectives add minted_coins.purse_cd dummy
+scoreboard objectives add minted_coins.purse trigger
 # menu sessions of earlier development versions
 scoreboard objectives remove minted_coins.session
 scoreboard objectives remove minted_coins.left
@@ -15,5 +19,8 @@ scoreboard players set $10 minted_coins.data 10
 scoreboard players set $100 minted_coins.data 100
 scoreboard players set $1000 minted_coins.data 1000
 scoreboard players set $10000 minted_coins.data 10000
+# purse macros test $small_0 / $small_1 to tell small coins apart
+scoreboard players set $small_0 minted_coins.data 0
+scoreboard players set $small_1 minted_coins.data 1
 execute unless score $last_id minted_coins.data matches 0.. run scoreboard players set $last_id minted_coins.data 0
 execute unless data storage minted_coins:registry mints run data modify storage minted_coins:registry mints set value []

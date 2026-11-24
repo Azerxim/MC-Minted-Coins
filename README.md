@@ -27,6 +27,12 @@ There is no diamond nugget, so diamond coins are struck on prismarine crystals. 
 
 When a mint is created with **Small change** ticked, it also changes each of its coins into 9 small coins (*Small Gold Coin*, etc.), and 9 of its own small coins back into 1 coin. Small coins are struck on firework stars, tinted with the colour of their metal: no recipe turns them into anything worth more, and only the mint that struck them takes them back.
 
+### Purse
+
+Each mint also sells its **purse** for 1 leather and 1 string. It works like a bundle: in your inventory, put coins of its mint in it (coins and small coins, whatever name they were struck under). They join its contents **without any limit**, and the bundle empties itself, ready for more; anything else is handed back. Right-click with the purse in your hand to see what it holds: choose a kind of coin and an amount (1 to 64), then **Withdraw**, or **Withdraw all**. The coins come back exactly as the mint strikes them, under its current names, so they stack with the others.
+
+The purse lists its contents in its tooltip and looks full or empty. It is a physical item: whoever holds it holds the coins. Without the resource pack, it looks like a bundle.
+
 ### Coins can't be counterfeited
 
 Every coin carries the name of the mint that struck it (*Struck by Kingdom of Aldoria*) and its mint id. None of this can be obtained in survival: an anvil can only rename an item, and a renamed nugget or crystal shows its name in italics, without the mint line.

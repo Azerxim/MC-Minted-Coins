@@ -89,3 +89,5 @@ execute if score $gold minted_coins.data matches 0 run data remove entity @s Off
 data modify storage minted_coins:tmp legacy_queue set value []
 data modify storage minted_coins:tmp legacy_queue set from storage minted_coins:tmp mint.legacy
 function minted_coins:mint/legacy_next
+# the purse of the mint: 1 leather + 1 string
+function minted_coins:purse/trade

@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "use": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft:bundle",
+          "predicates": {
+            "minecraft:custom_data": {
+              "minted_coins": {
+                "purse": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "minted_coins:purse/use"
+  }
+}

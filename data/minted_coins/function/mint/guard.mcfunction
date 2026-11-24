@@ -1,5 +1,7 @@
 # as a mint: other mods or data packs may add trades to wandering traders; a mint keeps only its own.
 # Its own trades never run out (maxUses 2147483647), which tells them apart. The count is taken once per mint.
+# the purse comes first in the list (mints created before purses existed start selling it)
+execute unless data entity @s Offers.Recipes[0].sell{id:"minecraft:bundle"} run function minted_coins:purse/upgrade
 execute unless score @s minted_coins.trades matches 0.. store result score @s minted_coins.trades if data entity @s Offers.Recipes[{maxUses:2147483647}]
 execute store result score $trades minted_coins.data if data entity @s Offers.Recipes[]
 execute if score $trades minted_coins.data <= @s minted_coins.trades run return 0
