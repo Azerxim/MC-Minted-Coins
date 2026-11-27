@@ -6,8 +6,8 @@ data modify storage minted_coins:tmp join_queue set value []
 execute if data storage minted_coins:tmp m.trades{strike:1b} run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.family.strike",fallback:"strike"}
 execute if data storage minted_coins:tmp m.trades{small:1b} run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.small_change",fallback:"small change"}
 execute if data storage minted_coins:tmp m.trades{convert:1b} run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.family.convert",fallback:"conversion"}
-execute if data storage minted_coins:tmp m.trades{convert:1b,convert_all:1b} run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.family.convert_all",fallback:"coins of every bank"}
-execute if data storage minted_coins:tmp m.trades{buyback:1b} run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.family.buyback",fallback:"diamond buyback"}
+execute if data storage minted_coins:tmp m.trades{buyback:1b} run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.family.buyback",fallback:"buyback"}
+execute if data storage minted_coins:tmp m.trades{buyback:1b,buyback_all:1b} run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.family.buyback_all",fallback:"coins of every bank"}
 execute if data storage minted_coins:tmp m.trades{purse:1b} run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.family.purse",fallback:"purse"}
 execute if data storage minted_coins:tmp m.trades{licence:1b} run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.family.licence",fallback:"shop licence"}
 execute unless data storage minted_coins:tmp join_queue[0] run data modify storage minted_coins:tmp join_queue append value {translate:"chat.minted_coins.family.none",fallback:"no trade"}

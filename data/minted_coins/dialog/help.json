@@ -31,7 +31,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.mints",
-          "fallback": "Mints are placed from the page of their bank, 2 blocks in front of you. They all strike the coins of the bank, and each one takes back the coins struck by the others. Each mint only offers the trades ticked for it: strike, small change, conversion, diamond buyback, purse."
+          "fallback": "Mints are placed from the page of their bank, 2 blocks in front of you. They all strike the coins of the bank, and each one takes back the coins struck by the others. Each mint only offers the trades ticked for it: strike, small change, conversion, buyback, purse, shop licence."
         }
       }
     },
@@ -134,7 +134,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.conversion",
-          "fallback": "Conversion: mints offering it melt their bank's coins back into ingots (or diamonds) without loss, as many coins as the bank strikes per ingot for 1 ingot. They exchange coins struck under a former name for current coins, one for one, and change 64 coins of a number into 1 coin of the next number, and back (each coin has a number, 0 = not converted; by default copper 1, iron 2, gold 3, diamond 4). With \"coins of every bank\", the mint also melts the coins of the other banks, at the rates of each."
+          "fallback": "Conversion: mints offering it exchange coins struck under a former name for current coins, one for one, and change 64 coins of a number into 1 coin of the next number, and back. Each coin has a number (0 = not converted); by default copper 1, iron 2, gold 3, diamond 4, so 64 copper coins = 1 iron coin, 64 iron coins = 1 gold coin, 64 gold coins = 1 diamond coin."
         }
       }
     },
@@ -143,7 +143,7 @@
       "width": 300,
       "contents": {
         "translate": "dialog.minted_coins.help.rates",
-        "fallback": "At a crafting table, 9 coins always give back 1 ingot. Mints offering conversion melt coins without loss, at the rates of their bank; the buyback changes 9 diamond coins of the bank for 1 diamond.",
+        "fallback": "At a crafting table, 9 coins always give back 1 ingot. Mints offering buyback take the coins of their bank back without loss, at its rates: as many coins as the bank strikes per ingot (or per diamond) for 1 ingot (or diamond). With \"coins of every bank\", they also take back the coins of the other banks, at the rates of each.",
         "color": "gray"
       }
     },

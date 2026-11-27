@@ -319,7 +319,7 @@
       },
       "tooltip": {
         "translate": "dialog.minted_coins.create.confirm.tooltip",
-        "fallback": "Mints offering conversion melt the coins back without loss, at these rates. At a crafting table, 9 coins give 1 ingot."
+        "fallback": "Mints offering buyback take the coins back without loss, at these rates. At a crafting table, 9 coins give 1 ingot."
       },
       "action": {
         "type": "minecraft:dynamic/run_command",

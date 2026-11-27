@@ -20,8 +20,8 @@ execute unless data storage minted_coins:tmp entry.name{} run data modify storag
 execute if data storage minted_coins:tmp entry.trades{strike:0b} run data modify storage minted_coins:tmp show.dialog.inputs[1].initial set value false
 execute if data storage minted_coins:tmp entry.trades{small:0b} run data modify storage minted_coins:tmp show.dialog.inputs[2].initial set value false
 execute if data storage minted_coins:tmp entry.trades{convert:0b} run data modify storage minted_coins:tmp show.dialog.inputs[3].initial set value false
-execute if data storage minted_coins:tmp entry.trades{convert_all:1b} run data modify storage minted_coins:tmp show.dialog.inputs[4].initial set value true
-execute if data storage minted_coins:tmp entry.trades{buyback:0b} run data modify storage minted_coins:tmp show.dialog.inputs[5].initial set value false
+execute if data storage minted_coins:tmp entry.trades{buyback:0b} run data modify storage minted_coins:tmp show.dialog.inputs[4].initial set value false
+execute if data storage minted_coins:tmp entry.trades{buyback_all:1b} run data modify storage minted_coins:tmp show.dialog.inputs[5].initial set value true
 execute if data storage minted_coins:tmp entry.trades{purse:0b} run data modify storage minted_coins:tmp show.dialog.inputs[6].initial set value false
 execute unless data storage minted_coins:tmp entry.trades{licence:1b} run data modify storage minted_coins:tmp show.dialog.inputs[7].initial set value false
 function minted_coins:admin/show with storage minted_coins:tmp show

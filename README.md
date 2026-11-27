@@ -14,17 +14,17 @@ Each **mint** only chooses which families of trades it offers, so that one mint 
 
 - **Strike**: 1 gold ingot → 8 gold coins, 1 copper ingot → 8 copper coins, 1 iron ingot → 8 iron coins, 1 diamond → 8 diamond coins
 - **Small change**: 1 coin → as many small coins as the bank strikes coins per ingot (or per diamond), and back, for each metal
-- **Conversion**: coins → ingots or diamonds without loss (8 gold coins → 1 gold ingot at 8 per ingot), coins struck under a former name → current coins, and 64 copper coins ↔ 1 iron coin, 64 iron coins ↔ 1 gold coin, 64 gold coins ↔ 1 diamond coin (the order can be changed). An option, off by default, also takes the coins of every other bank, at its own rates
-- **Diamond buyback**: 9 diamond coins of the bank → 1 diamond
+- **Conversion**: coins struck under a former name → current coins, and 64 copper coins ↔ 1 iron coin, 64 iron coins ↔ 1 gold coin, 64 gold coins ↔ 1 diamond coin (the order can be changed)
+- **Buyback**: coins → ingots or diamonds without loss, at the rates of the bank (8 gold coins → 1 gold ingot at 8 per ingot). An option, off by default, also takes back the coins of every other bank, at its own rates
 - **Purse**: 1 leather + 1 string → the purse of the bank
 
 A mint is an immobile, invulnerable merchant with its own name above its head. It stands behind its **counter**, with a coin press, scales and stacks of coins (a 3D model of the resource pack; without it, a barrel). The counter has no hitbox: clicks go through to the merchant. It goes away with the mint.
 
 The number of coins per ingot or diamond (0 to 9) is chosen for each bank. At 0, the bank doesn't strike that coin at all and its trades don't appear, so a bank can strike only gold, for instance.
 
-Coins work anywhere a nugget does, and **9 coins always melt back into 1 ingot** with the vanilla recipe. Mints offering conversion melt them back without loss, at the rate of their bank: at 8 coins per ingot, 8 coins give back 1 ingot.
+Coins work anywhere a nugget does, and **9 coins always melt back into 1 ingot** with the vanilla recipe. Mints offering buyback take them back without loss, at the rate of their bank: at 8 coins per ingot, 8 coins give back 1 ingot.
 
-There is no diamond nugget, so diamond coins are struck on prismarine crystals. A recipe can't tell a coin from plain crystals, so instead of a recipe, **mints buy back 9 diamond coins of their bank for 1 diamond**: coins from another bank, or plain prismarine crystals, are refused.
+There is no diamond nugget, so diamond coins are struck on prismarine crystals. A recipe can't tell a coin from plain crystals, so instead of a recipe, **mints offering buyback take diamond coins back for diamonds**, at the rate of their bank: plain prismarine crystals, or coins from another bank (unless the mint takes the coins of every bank), are refused.
 
 ### Exchange offices
 
@@ -54,7 +54,7 @@ A single **Small coin name** field names the small coins of all four metals: it 
 
 ### Conversion
 
-Mints offering conversion melt the coins of their bank back into ingots (or diamonds) without loss: as many coins as the bank strikes per ingot give back 1 ingot. They also exchange the coins struck under a former name for current coins, one for one. With **Conversion: coins of every bank** ticked (off by default), a mint also melts the coins of every other bank, at the rates of that bank.
+Mints offering conversion exchange the coins struck under a former name for current coins, one for one.
 
 Each coin has a **conversion order**, a number from 0 to 4 set for each bank. Mints change 64 coins of one number into 1 coin of the next number among the coins the bank strikes, and 1 into 64 back. By default copper is 1, iron 2, gold 3 and diamond 4: 64 copper coins = 1 iron coin, 64 iron coins = 1 gold coin, 64 gold coins = 1 diamond coin. A coin set to 0, or not struck, is left out of the chain: without iron, 64 copper coins are worth 1 gold coin. Two struck coins can't share a number. Banks that come from mints of version 1.0 get the conversion trades once edited.
 
