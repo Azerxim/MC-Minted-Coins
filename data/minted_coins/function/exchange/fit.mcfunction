@@ -1,5 +1,5 @@
-# $x coins of a bank striking $rf coins per ingot -> $y coins of a bank striking $rt per ingot, giving back $keep % of the metal:
-# the smallest trade (1 to 64 coins each way) whose rounding costs nothing more than the fee, otherwise at most 2 more points;
+# $x coins of a bank striking $rf coins per ingot -> $y coins of a bank striking $rt per ingot, giving back $kn / $kd of the metal:
+# the smallest trade (1 to 64 coins each way) that gives back exactly that, otherwise within 2 % of the metal given;
 # never in the player's favour. Without one, the largest trade that fits in 64 coins.
 scoreboard players set $x minted_coins.data 0
 scoreboard players set $tol minted_coins.data 0
@@ -19,5 +19,6 @@ scoreboard players operation $x minted_coins.data = $rf minted_coins.data
 scoreboard players operation $x minted_coins.data *= $k minted_coins.data
 scoreboard players operation $y minted_coins.data = $rt minted_coins.data
 scoreboard players operation $y minted_coins.data *= $k minted_coins.data
-scoreboard players operation $y minted_coins.data *= $keep minted_coins.data
-scoreboard players operation $y minted_coins.data /= $100 minted_coins.data
+scoreboard players operation $y minted_coins.data *= $kn minted_coins.data
+scoreboard players operation $y minted_coins.data /= $kd minted_coins.data
+execute if score $y minted_coins.data matches 65.. run scoreboard players set $y minted_coins.data 64

@@ -51,6 +51,8 @@ execute store result storage minted_coins:tmp bank.diamond_rank int 1 run scoreb
 execute store result storage minted_coins:tmp bank.licence int 1 run scoreboard players get $licence minted_coins.data
 data modify storage minted_coins:tmp bank.licence_metal set from storage minted_coins:tmp new_licence_metal
 data modify storage minted_coins:registry banks append from storage minted_coins:tmp bank
+# mints that convert the coins of every bank take this one too
+scoreboard players add $config_ver minted_coins.data 1
 tellraw @s {translate:"chat.minted_coins.bank_created",fallback:"✔ Bank created: %s",color:"green",with:[{nbt:"bank.name",storage:"minted_coins:tmp",interpret:true,color:"gold"}]}
 scoreboard players operation $target minted_coins.data = $last_bank minted_coins.data
 function minted_coins:admin/bank_page

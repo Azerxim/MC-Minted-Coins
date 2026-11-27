@@ -17,4 +17,3 @@ data modify storage minted_coins:tmp at.y set from storage minted_coins:tmp shop
 data modify storage minted_coins:tmp at.z set from storage minted_coins:tmp shop.z
 function minted_coins:shop/at with storage minted_coins:tmp at
 function minted_coins:shop/save with storage minted_coins:tmp shop
-execute if score $moved minted_coins.data matches 1 run scoreboard players set @s minted_coins.shop_cd 5

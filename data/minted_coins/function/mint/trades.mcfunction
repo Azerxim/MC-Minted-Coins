@@ -88,7 +88,7 @@ data remove storage minted_coins:tmp coins.buy.copper.components."minecraft:lore
 data remove storage minted_coins:tmp coins.buy.iron.components."minecraft:lore"
 data remove storage minted_coins:tmp coins.buy.diamond.components."minecraft:lore"
 # trades the mint keeps: $keep_<trade> = 1 when the bank strikes the coin (rate above 0, small change for the small coins)
-# and the mint accepts that family of trades (minted_coins:tmp mint.trades: strike, small, convert, buyback, purse, licence)
+# and the mint accepts that family of trades (minted_coins:tmp mint.trades: strike, small, convert, convert_all, buyback, purse, licence)
 execute store result score $f_strike minted_coins.data run data get storage minted_coins:tmp mint.trades.strike
 execute store result score $f_small minted_coins.data run data get storage minted_coins:tmp mint.trades.small
 execute store result score $f_convert minted_coins.data run data get storage minted_coins:tmp mint.trades.convert
@@ -127,17 +127,9 @@ execute if score $keep_copper minted_coins.data matches 0 run data remove entity
 execute if score $keep_small_gold minted_coins.data matches 0 run data remove entity @s Offers.Recipes[2]
 execute if score $keep_small_gold minted_coins.data matches 0 run data remove entity @s Offers.Recipes[1]
 execute if score $keep_gold minted_coins.data matches 0 run data remove entity @s Offers.Recipes[0]
-# conversion: 64 coins of a rank are worth 1 coin of the next rank among the struck coins ($gold_rank…), and back
-execute if score $f_convert minted_coins.data matches 1 run function minted_coins:mint/chain
-execute if score $f_convert minted_coins.data matches 1 run function minted_coins:mint/convert_next
-# former coin names (bank.legacy): the coins struck under them are exchanged one for one for current coins
-data modify storage minted_coins:tmp legacy_queue set value []
-data modify storage minted_coins:tmp legacy_queue set from storage minted_coins:tmp bank.legacy
-function minted_coins:mint/legacy_next
-# former small coin names (bank.legacy_small): the small coins struck under them are exchanged one for one for current ones
-data modify storage minted_coins:tmp legacy_queue set value []
-data modify storage minted_coins:tmp legacy_queue set from storage minted_coins:tmp bank.legacy_small
-function minted_coins:mint/legacy_small_next
+# conversion: the coins of the bank -> ingots or diamonds at its rates, the coins struck under former names -> current coins,
+# 64 coins of a rank <-> 1 coin of the next rank; with convert_all, the coins of every other bank -> ingots at its rates
+execute if score $f_convert minted_coins.data matches 1 run function minted_coins:mint/convert
 # the purse of the bank: 1 leather + 1 string
 execute if score $f_purse minted_coins.data matches 1 run function minted_coins:purse/trade
 # the shop licence of the bank: N coins -> 1 licence (see minted_coins:shop/licence_trade)

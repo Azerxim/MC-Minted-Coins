@@ -3,7 +3,7 @@ scoreboard players operation $target minted_coins.data = $action minted_coins.da
 scoreboard players remove $target minted_coins.data 1000000
 execute store success score $ok minted_coins.data run function minted_coins:admin/select_bank
 execute unless score $ok minted_coins.data matches 1 run return fail
-data modify storage minted_coins:tmp form set value {d:"$",acc:"0",sel:[],fee:10,name:""}
+data modify storage minted_coins:tmp form set value {d:"$",acc:"0",sel:[],give:10,back:9,name:""}
 data modify storage minted_coins:tmp form.own set from storage minted_coins:tmp entry.id
 data modify storage minted_coins:tmp form.title set value {translate:"dialog.minted_coins.exchange_form.new_title",fallback:"New exchange office of %s",with:[],color:"gold"}
 data modify storage minted_coins:tmp form.title.with append from storage minted_coins:tmp entry.name

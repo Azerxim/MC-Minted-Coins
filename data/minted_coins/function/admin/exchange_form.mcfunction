@@ -1,8 +1,9 @@
-# minted_coins:tmp form {d, own (its bank), cmd, name, fee, sel (ticked banks), title, confirm, acc:"0"}: shows the exchange
-# office dialog: its name, its fee and one checkbox per other bank, whose values make the partners list of the command
-data modify storage minted_coins:tmp form.inputs set value [{type:"minecraft:text",key:"name",label:{translate:"dialog.minted_coins.exchange_form.name",fallback:"Exchange office name (empty = Exchange office of <bank>)"},width:240,initial:"",max_length:32},{type:"minecraft:number_range",key:"fee",label:{translate:"dialog.minted_coins.exchange_form.fee",fallback:"Fee (%%)"},width:240,start:0,end:50,step:1,initial:10}]
+# minted_coins:tmp form {d, own (its bank), cmd, name, give, back, sel (ticked banks), title, confirm, acc:"0"}: shows the exchange
+# office dialog: its name, its rate (coins given -> coins given back, in metal) and one checkbox per other bank, whose values make the partners list of the command
+data modify storage minted_coins:tmp form.inputs set value [{type:"minecraft:text",key:"name",label:{translate:"dialog.minted_coins.exchange_form.name",fallback:"Exchange office name (empty = Exchange office of <bank>)"},width:240,initial:"",max_length:32},{type:"minecraft:number_range",key:"give",label:{translate:"dialog.minted_coins.exchange_form.give",fallback:"Coins given"},width:240,start:1,end:64,step:1,initial:10},{type:"minecraft:number_range",key:"back",label:{translate:"dialog.minted_coins.exchange_form.back",fallback:"Coins given back"},width:240,start:1,end:64,step:1,initial:9}]
 data modify storage minted_coins:tmp form.inputs[0].initial set from storage minted_coins:tmp form.name
-execute store result storage minted_coins:tmp form.inputs[1].initial float 1 run data get storage minted_coins:tmp form.fee
+execute store result storage minted_coins:tmp form.inputs[1].initial float 1 run data get storage minted_coins:tmp form.give
+execute store result storage minted_coins:tmp form.inputs[2].initial float 1 run data get storage minted_coins:tmp form.back
 data modify storage minted_coins:tmp xqueue set from storage minted_coins:registry banks
 execute store result score $own minted_coins.data run data get storage minted_coins:tmp form.own
 function minted_coins:admin/exchange_form_next

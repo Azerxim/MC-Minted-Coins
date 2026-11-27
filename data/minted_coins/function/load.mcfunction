@@ -9,12 +9,13 @@ scoreboard objectives add minted_coins.trades dummy
 scoreboard objectives add minted_coins.bank dummy
 scoreboard objectives add minted_coins.ver dummy
 # shops: /trigger minted_coins.shop is open to every player (the menu of the shop they selected, checked against its key);
-# the shop they clicked, the bank of the licence they use, and for shop villagers the version of their offers and a cooldown
+# the shop they clicked, the bank of the licence they use, and for shop villagers the version of their offers
 scoreboard objectives add minted_coins.shop trigger
 scoreboard objectives add minted_coins.shop_sel dummy
 scoreboard objectives add minted_coins.licence dummy
 scoreboard objectives add minted_coins.shop_ver dummy
-scoreboard objectives add minted_coins.shop_cd dummy
+# (earlier development versions: a cooldown before shop villagers were rebuilt for new stock)
+scoreboard objectives remove minted_coins.shop_cd
 # players authorized by /function minted_coins:mint/menu
 scoreboard objectives add minted_coins.op dummy
 # purses: ticks left before the bundle refills after a right click (earlier development versions: purse_use, purse)

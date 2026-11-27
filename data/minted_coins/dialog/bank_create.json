@@ -261,7 +261,7 @@
       "key": "licence",
       "label": {
         "translate": "dialog.minted_coins.create.licence",
-        "fallback": "Shop licence price (0 = no licence)"
+        "fallback": "Licence price (0 = none)"
       },
       "width": 240,
       "start": 0,
@@ -274,7 +274,7 @@
       "key": "licence_metal",
       "label": {
         "translate": "dialog.minted_coins.create.licence_metal",
-        "fallback": "Shop licence paid in"
+        "fallback": "Licence paid in"
       },
       "width": 240,
       "options": [
@@ -319,7 +319,7 @@
       },
       "tooltip": {
         "translate": "dialog.minted_coins.create.confirm.tooltip",
-        "fallback": "9 coins always melt back into 1 ingot. Below 9 per ingot, the mint keeps the difference."
+        "fallback": "Mints offering conversion melt the coins back without loss, at these rates. At a crafting table, 9 coins give 1 ingot."
       },
       "action": {
         "type": "minecraft:dynamic/run_command",

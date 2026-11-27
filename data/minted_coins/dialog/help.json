@@ -46,7 +46,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.exchange",
-          "fallback": "Exchange offices are placed from the page of their bank too. They change the coins of the banks ticked for them for coins of their bank, and back, metal by metal: at equal metal, according to the coins each bank strikes per ingot, minus their fee. Small coins are not changed."
+          "fallback": "Exchange offices are placed from the page of their bank too. They change the coins of the banks ticked for them for coins of their bank, and back, metal by metal, at the rate set for them: for the coins given, the metal of the coins given back (10 given → 9 back, for instance). Small coins are not changed."
         }
       }
     },
@@ -134,7 +134,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.conversion",
-          "fallback": "Conversion order: each coin has a number (0 = not converted). Mints change 64 coins of a number into 1 coin of the next number among the coins the bank strikes, and back. By default: copper 1, iron 2, gold 3, diamond 4, so 64 copper coins = 1 iron coin, 64 iron coins = 1 gold coin, 64 gold coins = 1 diamond coin."
+          "fallback": "Conversion: mints offering it melt their bank's coins back into ingots (or diamonds) without loss, as many coins as the bank strikes per ingot for 1 ingot. They exchange coins struck under a former name for current coins, one for one, and change 64 coins of a number into 1 coin of the next number, and back (each coin has a number, 0 = not converted; by default copper 1, iron 2, gold 3, diamond 4). With \"coins of every bank\", the mint also melts the coins of the other banks, at the rates of each."
         }
       }
     },
@@ -143,7 +143,7 @@
       "width": 300,
       "contents": {
         "translate": "dialog.minted_coins.help.rates",
-        "fallback": "9 coins always melt back into 1 ingot, and mints buy back 9 diamond coins of their bank for 1 diamond: below 9 coins, the bank keeps the difference.",
+        "fallback": "At a crafting table, 9 coins always give back 1 ingot. Mints offering conversion melt coins without loss, at the rates of their bank; the buyback changes 9 diamond coins of the bank for 1 diamond.",
         "color": "gray"
       }
     },
