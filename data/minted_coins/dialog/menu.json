@@ -20,32 +20,32 @@
     "width": 300,
     "contents": {
       "translate": "dialog.minted_coins.menu.body",
-      "fallback": "Mints are merchants that strike coins from ingots. Coins can only come from a mint, so nobody can counterfeit them."
+      "fallback": "Banks set the coins of a currency; their mints are merchants that strike these coins from ingots. Coins can only come from a mint, so nobody can counterfeit them."
     }
   },
   "actions": [
     {
       "label": {
         "translate": "dialog.minted_coins.menu.new",
-        "fallback": "New mint…"
+        "fallback": "New bank…"
       },
       "tooltip": {
         "translate": "dialog.minted_coins.menu.new.tooltip",
-        "fallback": "Place a mint 2 blocks in front of you and choose the coins it strikes."
+        "fallback": "Create a currency: the names and rates of its coins. Its mints are placed from its page."
       },
       "action": {
         "type": "minecraft:show_dialog",
-        "dialog": "minted_coins:create"
+        "dialog": "minted_coins:bank_create"
       }
     },
     {
       "label": {
         "translate": "dialog.minted_coins.menu.list",
-        "fallback": "Mints list"
+        "fallback": "Banks"
       },
       "tooltip": {
         "translate": "dialog.minted_coins.menu.list.tooltip",
-        "fallback": "Every mint with its position and rates, to teleport to it, edit it or remove it."
+        "fallback": "Every bank with its mints, to place a new mint, teleport to one, edit them or remove them."
       },
       "action": {
         "type": "minecraft:run_command",
@@ -59,7 +59,7 @@
       },
       "tooltip": {
         "translate": "dialog.minted_coins.menu.help.tooltip",
-        "fallback": "How mints, coins, names and editing work, and who can use this menu."
+        "fallback": "How banks, mints, coins, names and editing work, and who can use this menu."
       },
       "action": {
         "type": "minecraft:show_dialog",

@@ -1,4 +1,5 @@
-# as a mint (its minted_coins.id set): (re)builds its name and trades from minted_coins:tmp mint (name, coin names)
+# as a mint (its minted_coins.bank set): (re)builds its name and trades from minted_coins:tmp mint (its name, the families
+# of trades it accepts) and minted_coins:tmp bank (name, coin names, small coin name, former names)
 # and the scores $gold / $copper / $iron / $diamond (coins per ingot or diamond, 0 = not struck), $small (1 = small change)
 # and $gold_rank / $copper_rank / $iron_rank / $diamond_rank (conversion order, 0 = not converted)
 data modify entity @s CustomName set from storage minted_coins:tmp mint.name
@@ -12,68 +13,70 @@ execute unless score $iron minted_coins.data matches 0 store result entity @s Of
 execute unless score $iron minted_coins.data matches 0 store result entity @s Offers.Recipes[8].buy.count int 1 run scoreboard players get $iron minted_coins.data
 execute unless score $diamond minted_coins.data matches 0 store result entity @s Offers.Recipes[10].sell.count int 1 run scoreboard players get $diamond minted_coins.data
 execute unless score $diamond minted_coins.data matches 0 store result entity @s Offers.Recipes[11].buy.count int 1 run scoreboard players get $diamond minted_coins.data
+# names of the small coins: the small coin name of the mint, with each coin name
+function minted_coins:mint/small_names
 # coins taken back show the coin names of the mint; the trade only takes coins that carry these names
-data modify entity @s Offers.Recipes[1].buy.components."minecraft:item_name" set from storage minted_coins:tmp mint.gold_name
-data modify entity @s Offers.Recipes[2].buy.components."minecraft:item_name".with[0] set from storage minted_coins:tmp mint.gold_name
-data modify entity @s Offers.Recipes[4].buy.components."minecraft:item_name" set from storage minted_coins:tmp mint.copper_name
-data modify entity @s Offers.Recipes[5].buy.components."minecraft:item_name".with[0] set from storage minted_coins:tmp mint.copper_name
-data modify entity @s Offers.Recipes[7].buy.components."minecraft:item_name" set from storage minted_coins:tmp mint.iron_name
-data modify entity @s Offers.Recipes[8].buy.components."minecraft:item_name".with[0] set from storage minted_coins:tmp mint.iron_name
-data modify entity @s Offers.Recipes[10].buy.components."minecraft:item_name" set from storage minted_coins:tmp mint.diamond_name
-data modify entity @s Offers.Recipes[11].buy.components."minecraft:item_name".with[0] set from storage minted_coins:tmp mint.diamond_name
-data modify entity @s Offers.Recipes[12].buy.components."minecraft:item_name" set from storage minted_coins:tmp mint.diamond_name
+data modify entity @s Offers.Recipes[1].buy.components."minecraft:item_name" set from storage minted_coins:tmp bank.gold_name
+data modify entity @s Offers.Recipes[2].buy.components."minecraft:item_name" set from storage minted_coins:tmp small_names.gold
+data modify entity @s Offers.Recipes[4].buy.components."minecraft:item_name" set from storage minted_coins:tmp bank.copper_name
+data modify entity @s Offers.Recipes[5].buy.components."minecraft:item_name" set from storage minted_coins:tmp small_names.copper
+data modify entity @s Offers.Recipes[7].buy.components."minecraft:item_name" set from storage minted_coins:tmp bank.iron_name
+data modify entity @s Offers.Recipes[8].buy.components."minecraft:item_name" set from storage minted_coins:tmp small_names.iron
+data modify entity @s Offers.Recipes[10].buy.components."minecraft:item_name" set from storage minted_coins:tmp bank.diamond_name
+data modify entity @s Offers.Recipes[11].buy.components."minecraft:item_name" set from storage minted_coins:tmp small_names.diamond
+data modify entity @s Offers.Recipes[12].buy.components."minecraft:item_name" set from storage minted_coins:tmp bank.diamond_name
 # trades, per metal (gold 0-2, copper 3-5, iron 6-8, diamond 9-11): strike (ingot or diamond -> coins),
 # change (1 coin -> 9 small coins) and gather (9 small coins -> 1 coin); 12: buyback (9 diamond coins -> 1 diamond)
-data modify entity @s Offers.Recipes[0].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[0].sell.components."minecraft:item_name" set from storage minted_coins:tmp mint.gold_name
-data modify entity @s Offers.Recipes[1].sell.components."minecraft:item_name".with[0] set from storage minted_coins:tmp mint.gold_name
-data modify entity @s Offers.Recipes[1].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[2].sell.components."minecraft:item_name" set from storage minted_coins:tmp mint.gold_name
-data modify entity @s Offers.Recipes[2].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[3].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[3].sell.components."minecraft:item_name" set from storage minted_coins:tmp mint.copper_name
-data modify entity @s Offers.Recipes[4].sell.components."minecraft:item_name".with[0] set from storage minted_coins:tmp mint.copper_name
-data modify entity @s Offers.Recipes[4].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[5].sell.components."minecraft:item_name" set from storage minted_coins:tmp mint.copper_name
-data modify entity @s Offers.Recipes[5].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[6].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[6].sell.components."minecraft:item_name" set from storage minted_coins:tmp mint.iron_name
-data modify entity @s Offers.Recipes[7].sell.components."minecraft:item_name".with[0] set from storage minted_coins:tmp mint.iron_name
-data modify entity @s Offers.Recipes[7].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[8].sell.components."minecraft:item_name" set from storage minted_coins:tmp mint.iron_name
-data modify entity @s Offers.Recipes[8].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[9].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[9].sell.components."minecraft:item_name" set from storage minted_coins:tmp mint.diamond_name
-data modify entity @s Offers.Recipes[10].sell.components."minecraft:item_name".with[0] set from storage minted_coins:tmp mint.diamond_name
-data modify entity @s Offers.Recipes[10].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-data modify entity @s Offers.Recipes[11].sell.components."minecraft:item_name" set from storage minted_coins:tmp mint.diamond_name
-data modify entity @s Offers.Recipes[11].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp mint.name
-execute store result entity @s Offers.Recipes[0].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[1].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[2].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[3].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[4].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[5].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[6].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[7].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[8].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[9].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[10].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[11].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[1].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[2].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[4].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[5].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[7].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[8].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[10].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[11].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
-execute store result entity @s Offers.Recipes[12].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.id
+data modify entity @s Offers.Recipes[0].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[0].sell.components."minecraft:item_name" set from storage minted_coins:tmp bank.gold_name
+data modify entity @s Offers.Recipes[1].sell.components."minecraft:item_name" set from storage minted_coins:tmp small_names.gold
+data modify entity @s Offers.Recipes[1].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[2].sell.components."minecraft:item_name" set from storage minted_coins:tmp bank.gold_name
+data modify entity @s Offers.Recipes[2].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[3].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[3].sell.components."minecraft:item_name" set from storage minted_coins:tmp bank.copper_name
+data modify entity @s Offers.Recipes[4].sell.components."minecraft:item_name" set from storage minted_coins:tmp small_names.copper
+data modify entity @s Offers.Recipes[4].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[5].sell.components."minecraft:item_name" set from storage minted_coins:tmp bank.copper_name
+data modify entity @s Offers.Recipes[5].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[6].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[6].sell.components."minecraft:item_name" set from storage minted_coins:tmp bank.iron_name
+data modify entity @s Offers.Recipes[7].sell.components."minecraft:item_name" set from storage minted_coins:tmp small_names.iron
+data modify entity @s Offers.Recipes[7].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[8].sell.components."minecraft:item_name" set from storage minted_coins:tmp bank.iron_name
+data modify entity @s Offers.Recipes[8].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[9].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[9].sell.components."minecraft:item_name" set from storage minted_coins:tmp bank.diamond_name
+data modify entity @s Offers.Recipes[10].sell.components."minecraft:item_name" set from storage minted_coins:tmp small_names.diamond
+data modify entity @s Offers.Recipes[10].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+data modify entity @s Offers.Recipes[11].sell.components."minecraft:item_name" set from storage minted_coins:tmp bank.diamond_name
+data modify entity @s Offers.Recipes[11].sell.components."minecraft:lore"[0].with[0] set from storage minted_coins:tmp bank.name
+execute store result entity @s Offers.Recipes[0].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[1].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[2].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[3].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[4].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[5].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[6].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[7].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[8].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[9].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[10].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[11].sell.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[1].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[2].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[4].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[5].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[7].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[8].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[10].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[11].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
+execute store result entity @s Offers.Recipes[12].buy.components."minecraft:custom_data".minted_coins.mint int 1 run scoreboard players get @s minted_coins.bank
 execute unless score $gold minted_coins.data matches 0 store result entity @s Offers.Recipes[0].sell.count int 1 run scoreboard players get $gold minted_coins.data
 execute unless score $copper minted_coins.data matches 0 store result entity @s Offers.Recipes[3].sell.count int 1 run scoreboard players get $copper minted_coins.data
 execute unless score $iron minted_coins.data matches 0 store result entity @s Offers.Recipes[6].sell.count int 1 run scoreboard players get $iron minted_coins.data
 execute unless score $diamond minted_coins.data matches 0 store result entity @s Offers.Recipes[9].sell.count int 1 run scoreboard players get $diamond minted_coins.data
-# coins of this mint, for the conversion trades (before the trades of coins not struck are removed)
+# coins of the bank, for the conversion trades (before the trades of coins not struck are removed)
 data modify storage minted_coins:tmp coins set value {sell:{},buy:{}}
 data modify storage minted_coins:tmp coins.sell.gold set from entity @s Offers.Recipes[0].sell
 data modify storage minted_coins:tmp coins.sell.copper set from entity @s Offers.Recipes[3].sell
@@ -84,34 +87,58 @@ data remove storage minted_coins:tmp coins.buy.gold.components."minecraft:lore"
 data remove storage minted_coins:tmp coins.buy.copper.components."minecraft:lore"
 data remove storage minted_coins:tmp coins.buy.iron.components."minecraft:lore"
 data remove storage minted_coins:tmp coins.buy.diamond.components."minecraft:lore"
-# a rate of 0: the mint doesn't strike that coin; no small change: no change / gather trades (last first, so the indexes stay valid)
-execute if score $diamond minted_coins.data matches 0 run data remove entity @s Offers.Recipes[12]
-execute if score $small minted_coins.data matches 0 run data remove entity @s Offers.Recipes[11]
-execute unless score $small minted_coins.data matches 0 if score $diamond minted_coins.data matches 0 run data remove entity @s Offers.Recipes[11]
-execute if score $small minted_coins.data matches 0 run data remove entity @s Offers.Recipes[10]
-execute unless score $small minted_coins.data matches 0 if score $diamond minted_coins.data matches 0 run data remove entity @s Offers.Recipes[10]
-execute if score $diamond minted_coins.data matches 0 run data remove entity @s Offers.Recipes[9]
-execute if score $small minted_coins.data matches 0 run data remove entity @s Offers.Recipes[8]
-execute unless score $small minted_coins.data matches 0 if score $iron minted_coins.data matches 0 run data remove entity @s Offers.Recipes[8]
-execute if score $small minted_coins.data matches 0 run data remove entity @s Offers.Recipes[7]
-execute unless score $small minted_coins.data matches 0 if score $iron minted_coins.data matches 0 run data remove entity @s Offers.Recipes[7]
-execute if score $iron minted_coins.data matches 0 run data remove entity @s Offers.Recipes[6]
-execute if score $small minted_coins.data matches 0 run data remove entity @s Offers.Recipes[5]
-execute unless score $small minted_coins.data matches 0 if score $copper minted_coins.data matches 0 run data remove entity @s Offers.Recipes[5]
-execute if score $small minted_coins.data matches 0 run data remove entity @s Offers.Recipes[4]
-execute unless score $small minted_coins.data matches 0 if score $copper minted_coins.data matches 0 run data remove entity @s Offers.Recipes[4]
-execute if score $copper minted_coins.data matches 0 run data remove entity @s Offers.Recipes[3]
-execute if score $small minted_coins.data matches 0 run data remove entity @s Offers.Recipes[2]
-execute unless score $small minted_coins.data matches 0 if score $gold minted_coins.data matches 0 run data remove entity @s Offers.Recipes[2]
-execute if score $small minted_coins.data matches 0 run data remove entity @s Offers.Recipes[1]
-execute unless score $small minted_coins.data matches 0 if score $gold minted_coins.data matches 0 run data remove entity @s Offers.Recipes[1]
-execute if score $gold minted_coins.data matches 0 run data remove entity @s Offers.Recipes[0]
+# trades the mint keeps: $keep_<trade> = 1 when the bank strikes the coin (rate above 0, small change for the small coins)
+# and the mint accepts that family of trades (minted_coins:tmp mint.trades: strike, small, convert, buyback, purse, licence)
+execute store result score $f_strike minted_coins.data run data get storage minted_coins:tmp mint.trades.strike
+execute store result score $f_small minted_coins.data run data get storage minted_coins:tmp mint.trades.small
+execute store result score $f_convert minted_coins.data run data get storage minted_coins:tmp mint.trades.convert
+execute store result score $f_buyback minted_coins.data run data get storage minted_coins:tmp mint.trades.buyback
+execute store result score $f_purse minted_coins.data run data get storage minted_coins:tmp mint.trades.purse
+execute store result score $f_licence minted_coins.data run data get storage minted_coins:tmp mint.trades.licence
+scoreboard players set $keep_gold minted_coins.data 0
+execute unless score $gold minted_coins.data matches 0 if score $f_strike minted_coins.data matches 1 run scoreboard players set $keep_gold minted_coins.data 1
+scoreboard players set $keep_small_gold minted_coins.data 0
+execute unless score $gold minted_coins.data matches 0 if score $small minted_coins.data matches 1 if score $f_small minted_coins.data matches 1 run scoreboard players set $keep_small_gold minted_coins.data 1
+scoreboard players set $keep_copper minted_coins.data 0
+execute unless score $copper minted_coins.data matches 0 if score $f_strike minted_coins.data matches 1 run scoreboard players set $keep_copper minted_coins.data 1
+scoreboard players set $keep_small_copper minted_coins.data 0
+execute unless score $copper minted_coins.data matches 0 if score $small minted_coins.data matches 1 if score $f_small minted_coins.data matches 1 run scoreboard players set $keep_small_copper minted_coins.data 1
+scoreboard players set $keep_iron minted_coins.data 0
+execute unless score $iron minted_coins.data matches 0 if score $f_strike minted_coins.data matches 1 run scoreboard players set $keep_iron minted_coins.data 1
+scoreboard players set $keep_small_iron minted_coins.data 0
+execute unless score $iron minted_coins.data matches 0 if score $small minted_coins.data matches 1 if score $f_small minted_coins.data matches 1 run scoreboard players set $keep_small_iron minted_coins.data 1
+scoreboard players set $keep_diamond minted_coins.data 0
+execute unless score $diamond minted_coins.data matches 0 if score $f_strike minted_coins.data matches 1 run scoreboard players set $keep_diamond minted_coins.data 1
+scoreboard players set $keep_small_diamond minted_coins.data 0
+execute unless score $diamond minted_coins.data matches 0 if score $small minted_coins.data matches 1 if score $f_small minted_coins.data matches 1 run scoreboard players set $keep_small_diamond minted_coins.data 1
+scoreboard players set $keep_buyback minted_coins.data 0
+execute unless score $diamond minted_coins.data matches 0 if score $f_buyback minted_coins.data matches 1 run scoreboard players set $keep_buyback minted_coins.data 1
+# per metal (gold 0-2, copper 3-5, iron 6-8, diamond 9-11): strike, change, gather; 12: buyback. Last first, so the indexes stay valid
+execute if score $keep_buyback minted_coins.data matches 0 run data remove entity @s Offers.Recipes[12]
+execute if score $keep_small_diamond minted_coins.data matches 0 run data remove entity @s Offers.Recipes[11]
+execute if score $keep_small_diamond minted_coins.data matches 0 run data remove entity @s Offers.Recipes[10]
+execute if score $keep_diamond minted_coins.data matches 0 run data remove entity @s Offers.Recipes[9]
+execute if score $keep_small_iron minted_coins.data matches 0 run data remove entity @s Offers.Recipes[8]
+execute if score $keep_small_iron minted_coins.data matches 0 run data remove entity @s Offers.Recipes[7]
+execute if score $keep_iron minted_coins.data matches 0 run data remove entity @s Offers.Recipes[6]
+execute if score $keep_small_copper minted_coins.data matches 0 run data remove entity @s Offers.Recipes[5]
+execute if score $keep_small_copper minted_coins.data matches 0 run data remove entity @s Offers.Recipes[4]
+execute if score $keep_copper minted_coins.data matches 0 run data remove entity @s Offers.Recipes[3]
+execute if score $keep_small_gold minted_coins.data matches 0 run data remove entity @s Offers.Recipes[2]
+execute if score $keep_small_gold minted_coins.data matches 0 run data remove entity @s Offers.Recipes[1]
+execute if score $keep_gold minted_coins.data matches 0 run data remove entity @s Offers.Recipes[0]
 # conversion: 64 coins of a rank are worth 1 coin of the next rank among the struck coins ($gold_rank…), and back
-function minted_coins:mint/chain
-function minted_coins:mint/convert_next
-# former coin names (mint.legacy): the coins struck under them are exchanged one for one for current coins
+execute if score $f_convert minted_coins.data matches 1 run function minted_coins:mint/chain
+execute if score $f_convert minted_coins.data matches 1 run function minted_coins:mint/convert_next
+# former coin names (bank.legacy): the coins struck under them are exchanged one for one for current coins
 data modify storage minted_coins:tmp legacy_queue set value []
-data modify storage minted_coins:tmp legacy_queue set from storage minted_coins:tmp mint.legacy
+data modify storage minted_coins:tmp legacy_queue set from storage minted_coins:tmp bank.legacy
 function minted_coins:mint/legacy_next
-# the purse of the mint: 1 leather + 1 string
-function minted_coins:purse/trade
+# former small coin names (bank.legacy_small): the small coins struck under them are exchanged one for one for current ones
+data modify storage minted_coins:tmp legacy_queue set value []
+data modify storage minted_coins:tmp legacy_queue set from storage minted_coins:tmp bank.legacy_small
+function minted_coins:mint/legacy_small_next
+# the purse of the bank: 1 leather + 1 string
+execute if score $f_purse minted_coins.data matches 1 run function minted_coins:purse/trade
+# the shop licence of the bank: N coins -> 1 licence (see minted_coins:shop/licence_trade)
+execute if score $f_licence minted_coins.data matches 1 run function minted_coins:shop/licence_trade

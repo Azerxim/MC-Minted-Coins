@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "traded": {
+      "trigger": "minecraft:villager_trade",
+      "conditions": {
+        "villager": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "minecraft:villager"
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "minted_coins:shop/traded"
+  }
+}

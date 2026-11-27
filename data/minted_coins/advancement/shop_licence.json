@@ -1,0 +1,20 @@
+{
+  "criteria": {
+    "used": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft:paper",
+          "predicates": {
+            "minecraft:custom_data": {
+              "minted_coins": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "minted_coins:shop/use_licence"
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "type": "minecraft:multi_action",
+  "title": [
+    "",
+    {
+      "translate": "dialog.minted_coins.icon.gold",
+      "fallback": "",
+      "font": "minted_coins:dialog",
+      "color": "white",
+      "shadow_color": 0
+    },
+    {
+      "translate": "dialog.minted_coins.bank_create.title",
+      "fallback": "New bank",
+      "color": "gold"
+    }
+  ],
+  "body": {
+    "type": "minecraft:plain_message",
+    "width": 300,
+    "contents": {
+      "translate": "dialog.minted_coins.bank_create.body",
+      "fallback": "A bank sets the coins of its currency: names, rates, small change and conversion order. Its mints, placed from its page, strike them. An empty name is taken from a renamed item, as explained in Help…, or keeps its default. Set a slider to 0 to leave a coin out. Conversion order: 64 coins are worth 1 coin of the next number (0 = not converted).",
+      "color": "gray"
+    }
+  },
+  "inputs": [
+    {
+      "type": "minecraft:text",
+      "key": "name",
+      "label": {
+        "translate": "dialog.minted_coins.create.bank_name",
+        "fallback": "Bank name"
+      },
+      "width": 240,
+      "initial": "",
+      "max_length": 32
+    },
+    {
+      "type": "minecraft:text",
+      "key": "gold_name",
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.separator",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "gray",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.gold_name",
+          "fallback": "Gold coin name"
+        }
+      ],
+      "width": 240,
+      "initial": "",
+      "max_length": 32
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "gold",
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.gold.icon",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "white",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.gold",
+          "fallback": "Gold coins per ingot"
+        }
+      ],
+      "width": 240,
+      "start": 0,
+      "end": 9,
+      "step": 1,
+      "initial": 8
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "gold_rank",
+      "label": {
+        "translate": "dialog.minted_coins.create.rank",
+        "fallback": "Conversion order (0 = none)"
+      },
+      "width": 240,
+      "start": 0,
+      "end": 4,
+      "step": 1,
+      "initial": 3
+    },
+    {
+      "type": "minecraft:text",
+      "key": "copper_name",
+      "label": {
+        "translate": "dialog.minted_coins.create.copper_name",
+        "fallback": "Copper coin name"
+      },
+      "width": 240,
+      "initial": "",
+      "max_length": 32
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "copper",
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.copper.icon",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "white",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.copper",
+          "fallback": "Copper coins per ingot"
+        }
+      ],
+      "width": 240,
+      "start": 0,
+      "end": 9,
+      "step": 1,
+      "initial": 8
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "copper_rank",
+      "label": {
+        "translate": "dialog.minted_coins.create.rank",
+        "fallback": "Conversion order (0 = none)"
+      },
+      "width": 240,
+      "start": 0,
+      "end": 4,
+      "step": 1,
+      "initial": 1
+    },
+    {
+      "type": "minecraft:text",
+      "key": "iron_name",
+      "label": {
+        "translate": "dialog.minted_coins.create.iron_name",
+        "fallback": "Iron coin name"
+      },
+      "width": 240,
+      "initial": "",
+      "max_length": 32
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "iron",
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.iron.icon",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "white",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.iron",
+          "fallback": "Iron coins per ingot"
+        }
+      ],
+      "width": 240,
+      "start": 0,
+      "end": 9,
+      "step": 1,
+      "initial": 8
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "iron_rank",
+      "label": {
+        "translate": "dialog.minted_coins.create.rank",
+        "fallback": "Conversion order (0 = none)"
+      },
+      "width": 240,
+      "start": 0,
+      "end": 4,
+      "step": 1,
+      "initial": 2
+    },
+    {
+      "type": "minecraft:text",
+      "key": "diamond_name",
+      "label": {
+        "translate": "dialog.minted_coins.create.diamond_name",
+        "fallback": "Diamond coin name"
+      },
+      "width": 240,
+      "initial": "",
+      "max_length": 32
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "diamond",
+      "label": [
+        "",
+        {
+          "translate": "dialog.minted_coins.create.diamond.icon",
+          "fallback": "",
+          "font": "minted_coins:dialog",
+          "color": "white",
+          "shadow_color": 0
+        },
+        {
+          "translate": "dialog.minted_coins.create.diamond",
+          "fallback": "Diamond coins per diamond"
+        }
+      ],
+      "width": 240,
+      "start": 0,
+      "end": 9,
+      "step": 1,
+      "initial": 8
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "diamond_rank",
+      "label": {
+        "translate": "dialog.minted_coins.create.rank",
+        "fallback": "Conversion order (0 = none)"
+      },
+      "width": 240,
+      "start": 0,
+      "end": 4,
+      "step": 1,
+      "initial": 4
+    },
+    {
+      "type": "minecraft:boolean",
+      "key": "small",
+      "label": {
+        "translate": "dialog.minted_coins.create.small",
+        "fallback": "Small change (1 coin = as many small coins as coins per ingot)"
+      },
+      "initial": true,
+      "on_true": "1",
+      "on_false": "0"
+    },
+    {
+      "type": "minecraft:text",
+      "key": "small_name",
+      "label": {
+        "translate": "dialog.minted_coins.create.small_name",
+        "fallback": "Small coin name (%%s = coin name)"
+      },
+      "width": 240,
+      "initial": "",
+      "max_length": 32
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "licence",
+      "label": {
+        "translate": "dialog.minted_coins.create.licence",
+        "fallback": "Shop licence price (0 = no licence)"
+      },
+      "width": 240,
+      "start": 0,
+      "end": 64,
+      "step": 1,
+      "initial": 8
+    },
+    {
+      "type": "minecraft:single_option",
+      "key": "licence_metal",
+      "label": {
+        "translate": "dialog.minted_coins.create.licence_metal",
+        "fallback": "Shop licence paid in"
+      },
+      "width": 240,
+      "options": [
+        {
+          "id": "gold",
+          "display": {
+            "translate": "dialog.minted_coins.create.metal.gold",
+            "fallback": "gold coins"
+          },
+          "initial": true
+        },
+        {
+          "id": "copper",
+          "display": {
+            "translate": "dialog.minted_coins.create.metal.copper",
+            "fallback": "copper coins"
+          }
+        },
+        {
+          "id": "iron",
+          "display": {
+            "translate": "dialog.minted_coins.create.metal.iron",
+            "fallback": "iron coins"
+          }
+        },
+        {
+          "id": "diamond",
+          "display": {
+            "translate": "dialog.minted_coins.create.metal.diamond",
+            "fallback": "diamond coins"
+          }
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "label": {
+        "translate": "dialog.minted_coins.bank_create.confirm",
+        "fallback": "Create the bank",
+        "color": "green"
+      },
+      "tooltip": {
+        "translate": "dialog.minted_coins.create.confirm.tooltip",
+        "fallback": "9 coins always melt back into 1 ingot. Below 9 per ingot, the mint keeps the difference."
+      },
+      "action": {
+        "type": "minecraft:dynamic/run_command",
+        "template": "function minted_coins:admin/bank_create {gold:$(gold),copper:$(copper),iron:$(iron),diamond:$(diamond),small:$(small),gold_rank:$(gold_rank),copper_rank:$(copper_rank),iron_rank:$(iron_rank),diamond_rank:$(diamond_rank),name:\"$(name)\",gold_name:\"$(gold_name)\",copper_name:\"$(copper_name)\",iron_name:\"$(iron_name)\",diamond_name:\"$(diamond_name)\",small_name:\"$(small_name)\",licence:$(licence),licence_metal:\"$(licence_metal)\"}"
+      }
+    }
+  ],
+  "columns": 2,
+  "exit_action": {
+    "label": {
+      "translate": "gui.back",
+      "fallback": "Back"
+    },
+    "action": {
+      "type": "minecraft:show_dialog",
+      "dialog": "minted_coins:menu"
+    }
+  },
+  "pause": false
+}

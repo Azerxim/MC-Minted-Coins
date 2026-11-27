@@ -1,5 +1,5 @@
 # {slot}: reads the purse in this slot of the player into minted_coins:tmp purse
-# {mint, gold, copper, iron, diamond, small_gold, small_copper, small_iron, small_diamond, names:{mint, gold, copper, iron, diamond}},
+# {mint, gold, copper, iron, diamond, small_gold, small_copper, small_iron, small_diamond, names:{mint, gold, copper, iron, diamond, small}},
 # and what was just put in it (bundle contents) into minted_coins:tmp purse_contents.
 # Any slot works, the cursor too: the purse is copied into a temporary item display to be read.
 data remove storage minted_coins:tmp purse

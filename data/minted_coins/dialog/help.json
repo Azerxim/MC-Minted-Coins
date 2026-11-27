@@ -16,7 +16,52 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.mint",
-          "fallback": "The mint takes the name typed in the Mint name field. Left empty, it is named after the renamed item in your main hand (a name tag renamed in an anvil, for instance), otherwise \"Mint #N\"."
+          "fallback": "A bank sets a currency: the names, rates, small change and conversion order of its coins. It takes the name typed in the Bank name field. Left empty, it is named after the renamed item in your main hand (a name tag renamed in an anvil, for instance), otherwise \"Bank #N\"."
+        }
+      }
+    },
+    {
+      "type": "minecraft:item",
+      "item": {
+        "id": "minecraft:wandering_trader_spawn_egg"
+      },
+      "show_decorations": false,
+      "show_tooltip": false,
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.mints",
+          "fallback": "Mints are placed from the page of their bank, 2 blocks in front of you. They all strike the coins of the bank, and each one takes back the coins struck by the others. Each mint only offers the trades ticked for it: strike, small change, conversion, diamond buyback, purse."
+        }
+      }
+    },
+    {
+      "type": "minecraft:item",
+      "item": {
+        "id": "minecraft:emerald"
+      },
+      "show_decorations": false,
+      "show_tooltip": false,
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.exchange",
+          "fallback": "Exchange offices are placed from the page of their bank too. They change the coins of the banks ticked for them for coins of their bank, and back, metal by metal: at equal metal, according to the coins each bank strikes per ingot, minus their fee. Small coins are not changed."
+        }
+      }
+    },
+    {
+      "type": "minecraft:item",
+      "item": {
+        "id": "minecraft:barrel"
+      },
+      "show_decorations": false,
+      "show_tooltip": false,
+      "description": {
+        "width": 260,
+        "contents": {
+          "translate": "dialog.minted_coins.help.shops",
+          "fallback": "Players open shops with a licence sold by the mints (its price is set for each bank). Used while looking at a chest or barrel, it places a merchant on it and gives a key: the container becomes the stock, and only opens for whoever holds the key. Carrying the key, click the sign above the merchant to add offers: goods in the main hand, price in coins in the off hand."
         }
       }
     },
@@ -66,7 +111,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.small",
-          "fallback": "With small change, the mint also changes each coin into small coins, as many as it strikes coins per ingot (or per diamond), and changes them back the same way."
+          "fallback": "With small change, the mints also change each coin into small coins, as many as the bank strikes coins per ingot (or per diamond), and change them back the same way. Their name follows the small coin name typed in the menu, where %%s stands for the coin name (Small %%s by default)."
         }
       }
     },
@@ -89,7 +134,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.conversion",
-          "fallback": "Conversion order: each coin has a number (0 = not converted). The mint changes 64 coins of a number into 1 coin of the next number among the coins it strikes, and back. By default: copper 1, iron 2, gold 3, diamond 4, so 64 copper coins = 1 iron coin, 64 iron coins = 1 gold coin, 64 gold coins = 1 diamond coin."
+          "fallback": "Conversion order: each coin has a number (0 = not converted). Mints change 64 coins of a number into 1 coin of the next number among the coins the bank strikes, and back. By default: copper 1, iron 2, gold 3, diamond 4, so 64 copper coins = 1 iron coin, 64 iron coins = 1 gold coin, 64 gold coins = 1 diamond coin."
         }
       }
     },
@@ -98,7 +143,7 @@
       "width": 300,
       "contents": {
         "translate": "dialog.minted_coins.help.rates",
-        "fallback": "9 coins always melt back into 1 ingot, and the mint buys back 9 of its own diamond coins for 1 diamond: below 9 coins, the mint keeps the difference.",
+        "fallback": "9 coins always melt back into 1 ingot, and mints buy back 9 diamond coins of their bank for 1 diamond: below 9 coins, the bank keeps the difference.",
         "color": "gray"
       }
     },
@@ -112,7 +157,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.edit",
-          "fallback": "Edit… on the page of a mint changes its names, rates and small change: the mint is replaced by a new one at the same place, and the coins it already struck stay its own. Coins struck before a renaming keep their old name: the mint exchanges them one for one for coins under the new name."
+          "fallback": "Edit bank… on the page of a bank changes its names, rates, small change and conversion order: all its mints follow. Coins struck before a renaming keep their old name: the mints exchange them one for one for coins under the new name. Edit… on the page of a mint changes its name and its trades."
         }
       }
     },
@@ -137,7 +182,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.purse",
-          "fallback": "Each mint sells its purse for 1 leather and 1 string. It works like a bundle, without limit: put coins of its mint in it, take them out, choose which ones. It shows up to 32 coins, keeps the rest in reserve and shows more as you take them out. Anything else is handed back."
+          "fallback": "Each mint sells the purse of its bank for 1 leather and 1 string. It works like a bundle, without limit: put coins of its bank in it, take them out, choose which ones. It shows up to 32 coins, keeps the rest in reserve and shows more as you take them out. Anything else is handed back."
         }
       }
     },
@@ -151,7 +196,7 @@
         "width": 260,
         "contents": {
           "translate": "dialog.minted_coins.help.access",
-          "fallback": "Operators open this menu with /function minted_coins:mint/menu, which also lets them open it later with /trigger minted_coins.mint.menu. Creating or editing a mint runs an operator command: Minecraft asks you to confirm it."
+          "fallback": "Operators open this menu with /function minted_coins:mint/menu, which also lets them open it later with /trigger minted_coins.mint.menu. Creating or editing a bank or a mint runs an operator command: Minecraft asks you to confirm it."
         }
       }
     }

@@ -12,3 +12,9 @@ execute if score $counter_timer minted_coins.data matches 100.. run execute as @
 execute if score $counter_timer minted_coins.data matches 100.. run scoreboard players set $counter_timer minted_coins.data 0
 # mints keep only their own trades, whatever other mods or data packs add to wandering traders
 execute as @e[type=minecraft:wandering_trader,tag=minted_coins.mint] run function minted_coins:mint/guard
+# shops: the menu actions of their owners, and every second the stock of each loaded shop
+scoreboard players enable @a minted_coins.shop
+execute as @a[scores={minted_coins.shop=1..}] at @s run function minted_coins:shop/act
+scoreboard players add $shop_timer minted_coins.data 1
+execute if score $shop_timer minted_coins.data matches 20.. as @e[type=minecraft:villager,tag=minted_coins.shop] run function minted_coins:shop/check
+execute if score $shop_timer minted_coins.data matches 20.. run scoreboard players set $shop_timer minted_coins.data 0

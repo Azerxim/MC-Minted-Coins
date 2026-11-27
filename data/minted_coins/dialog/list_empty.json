@@ -11,7 +11,7 @@
     },
     {
       "translate": "dialog.minted_coins.list.title",
-      "fallback": "Mints",
+      "fallback": "Banks",
       "color": "gold"
     }
   ],
@@ -20,7 +20,7 @@
     "width": 300,
     "contents": {
       "translate": "dialog.minted_coins.list.empty",
-      "fallback": "No mint yet.",
+      "fallback": "No bank yet.",
       "color": "gray"
     }
   },
@@ -28,15 +28,15 @@
     {
       "label": {
         "translate": "dialog.minted_coins.menu.new",
-        "fallback": "New mint…"
+        "fallback": "New bank…"
       },
       "tooltip": {
         "translate": "dialog.minted_coins.menu.new.tooltip",
-        "fallback": "Place a mint 2 blocks in front of you and choose the coins it strikes."
+        "fallback": "Create a currency: the names and rates of its coins. Its mints are placed from its page."
       },
       "action": {
         "type": "minecraft:show_dialog",
-        "dialog": "minted_coins:create"
+        "dialog": "minted_coins:bank_create"
       }
     }
   ],
